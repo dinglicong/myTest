@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/zepto.1.1.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<!--<script src="js/float.js" type="text/javascript" charset="utf-8"></script>-->
+		<script type="text/javascript">
+		console.log(++[[]][+[]]);
+		//数组，对象相互转化
+//		var o = { title: "test", name: "matrix", age: "21", sex: "female"};
+//		for(var i in o){
+//			console.log(o[i]);
+//		}
+		
+//		var arr = {                         // 定义一个对象字面量
+//		    num: [[1,3,5],[2,3,8],[9,6,1]], // 一个二维数组
+//		    numR:function(o) {                // 处理函数            
+//		        o.reverse();        // 数组反向
+//		    }
+//		};
+//		
+//		arr.num.forEach(function(item) {
+//		    arr.numR(item);
+//		});
+//		console.log(arr);
+//		function test(){
+//			var isRember = (function(){
+//				var ischeck = "checked";
+//				if(ischeck){
+//					return true;
+//				}else{
+//					return false;
+//				}
+//			})();
+//			console.log(isRember);
+//			
+//			
+//		}
+//		test();
+			
+		//又见面试题
+//		var abc = function(y){
+//			var x = y;
+//			console.log("this is abc");
+//			return function(){
+//				console.log("this is x++:" + (x++));
+//				console.log("this is y--:" + (y--));
+//			}
+//		}(5)
+//		abc();
+//		abc();
+//		abc();
+		//闭包
+//		var func = function(){
+//			var a =1;
+//			return function(){
+//				a++;
+//				console.log(a);
+//			}
+//		}
+//		func()();func()();func()(); 
+//		var f = func();
+//		f();f();f();f();
+//		console.log(parseFloat(2.02*3).toFixed(2))
+		//||和&&
+//		var x = 0;
+//		console.log(x++||++x);
+//		console.log(++x&&x++);
+		//令人抓狂的JS面试题。
+//		var a=0;
+//		var b=!{}?1:a++&&a++;
+//		console.log(a);
+//		console.log(b);
+//		console.log(~{});
+		//令人抓狂的JS面试题。
+//				var x=0; 
+//				function foo(x){    
+//				     x++;    
+//				     this.length=x;    
+//				     return foo; 
+//				} 
+//				var bar =new new new foo(); 
+//				alert(bar.length);
+		//令人抓狂的JS面试题。
+//				var A=1; 
+//				(function A(){       
+//				    A=2;       
+//				    alert(A);       
+//				    delete A;       
+//				    alert(A); 
+//				})();
+//令人抓狂的JS面试题
+//		(function(callback){  
+//		    president ={name:"bush"};  
+//		    callback(president); 
+//		})(function(obj){
+//		    obj.name ="obama";    
+//		    console.log(obj);
+//		    console.log(president)
+//		    obj ={name:"clinton"}; 
+//		    console.log(obj);
+//		    console.log(president);
+//		})
+//令人抓狂的JS面试题
+//		var foo={    
+//		     bar:function(){        
+//		          console.log(this);    
+//		     } 
+//		 };
+//		 foo.bar();
+//		(foo.bar)();
+//		(foo.bar,foo.bar)(); 
+//		(foo.bar=foo.bar)();
+		//令人抓狂的js面试题
+//		var a = 5;
+//		function test(){
+//			a = 0;
+//			console.log(a);
+//			console.log(this.a);
+//			var a;
+//			console.log(a);
+//		}
+//		test();
+//		new test();
+//令人抓狂的js面试题
+//var o={   
+//    x: 10,   
+//    foo: function () {       
+//           with (this) {  
+//           		console.log(this);
+//                  function bar() {                 
+//                       console.log(x);                 
+//                       console.log(this);            
+//                  }             
+//                  var x=20;          
+//                  (function() { 
+//                  	console.log(this);
+//                        bar();                 
+//                  })();         
+//                  bar.call(this);       
+//            }   
+//     } 
+//} 
+//o.foo();
+			//方法，对象，内方法，对象方法
+//			var QQ = {
+//				name:"ttt",
+//				test:function(){
+//					console.log(this.name);
+//				}
+//			}
+//			setTimeout(QQ.test,500);
+//			function sohu(){return 1;}
+//			var sohu;
+//			console.log(typeof sohu);
+			//var xx=function(){} 方法与funciont xx(){}方法
+//			var consoleText = function(){
+//				console.log("var xx=function(){}方法");
+//			}
+//			function consoleText(){
+//				var a=0;
+//				function innerFun(){
+//				  a++;
+//				  console.log(a);
+//				 }
+//				return innerFun;
+//			}
+//			consoleText();
+//			$(function(){
+//				var test = consoleText;
+//				test();
+//			})
+//			闭包测试
+//			var name = "The Window";   
+//		　　var object = {   
+//			　　　　name : "My Object",   
+//			　　　　getNameFunc : function(){   
+//				　　　　　　return function(){   
+//				　　　　　　　　return this.name;   
+//				　　　　　	}   
+//		　　　　	}   
+//	//			my:{
+//	//				name:"myName",
+//	//				sex:"male",
+//	//				age:"25"
+//	//			},
+//	//				getNameFunc : function(){   
+//	//		　　　　　　　　return this.my;   
+//	//		　　　　	}   
+//			};   
+//			console.log(object.getNameFunc()());
+			//闭包之匿名内部函数
+//			function outerfunction(propertyName){
+//				return function(object1,object2){
+//					var value1 = object1[propertyName];
+//					var value2 = object2[propertyName];
+//					console.log(typeof value1);
+//					if(value1<value2){
+//						console.log(-1);
+//					}else if(value1 > value2){
+//						console.log(1);
+//					}else{
+//						console.log(0);
+//					}
+//				}
+//			}
+//			var outerObject = outerfunction("name");
+//			console.log(outerObject);
+//			var result = outerObject({name:"Nicholas"},{name:"AGreg"});
+//			console.log(result);
+//			var b = 2;
+//			function aa(){
+//				var b=10;
+//				return function(){ 
+//					b++;
+//					alert(this.b);
+//				};
+//			}
+//			      aa()();
+			//变量定义位置
+//			var name = "HELLO";
+//			function test(){
+//				console.log(name);
+//				name = "hello";
+//				var name;
+//			}
+//			test()
+			//闭包之参数定义位置
+//			function outerFun(){
+//			 //没有var 
+//			 a =0;
+//			 console.log(a);  
+//			}
+//			var a=4;
+//			outerFun();
+//			console.log(a);
+			//闭之参数定义位置2
+//			var a = 4;
+//			function test(){
+//				alert(a);
+//				var a = 5;
+//			}
+//			test();
+			//令人抓狂的js面试题
+//			var o={   
+//			      x: 10,   
+//			      foo: function () {       
+//			             with (this) {  
+//			             	console.log(this);
+//			                    function bar() {                 
+//			                         console.log(x);                 
+//			                         console.log(this);            
+//			                    }             
+//			                    var x=20;          
+//			                    (function() {                      
+//			                          bar();                 
+//			                    })();         
+//			                    bar.call(this);       
+//			              }   
+//			       } 
+//			} 
+//			o.foo();
+			//测试call方法
+//			function a() {
+//			    console.log(this);
+//			}
+//			a();
+//			(function(){
+//				a();
+//			})();
+//			a.call(null);
+			//for循环
+//			for (i=0,j=0;i<10,j<6;i++,j++) {
+//				k = i+j;
+//			}
+//			console.log(k);	
+			//原型链
+//			Foo = function(){
+//				this.myName = "Foo function";
+//			}
+//			Foo.prototype.sayHello = function(){
+//				console.log(this.myName);
+//			}
+//			Foo.prototype.bar = function(){
+//				setTimeout(this.sayHello(),1000);
+//			}
+//			var f = new Foo();
+//			f.bar();
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
