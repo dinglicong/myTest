@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{margin: 0px;padding: 0px;border: none;}
+			html,body{width: 100%;height: 100%;}
+			.page-con{width: 640px;height: 100%;margin: 0 auto;background-color: #444444;}
+			.flex-con{display: flex;width: 100%;flex-flow: row wrap;}
+			.flex-item{flex: auto; width: 200px;margin: 2px;text-align: center;-webkit-box-sizing: border-box;box-sizing: border-box;padding: 5px;-webkit-border-radius: 4px;overflow: hidden;color: #FFFFFF;background: #888888;}
+			.flex-con-2{display: flex;width: 100%;height: 50px;flex-flow: row wrap;justify-content: flex-end;}
+			.flex-item-2{ width: 100px;height: 30px;margin: 2px;text-align: center;-webkit-box-sizing: border-box;box-sizing: border-box;padding: 5px;-webkit-border-radius: 4px;overflow: hidden;color: #FFFFFF;background: #888888;}
+			.flex-con-3{display: flex;flex-flow: row wrap;justify-content: flex-end;align-items: center;width: 100%;height: 50px;}
+			.flex-item-3{width: 100px;height: 30px;margin: 2px;text-align: center;-webkit-box-sizing: border-box;box-sizing: border-box;padding: 5px;-webkit-border-radius: 4px;overflow: hidden;color: #FFFFFF;background: #888888;}
+		</style>
+		<script src="js/zepto.1.1.3.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<!--参考资料：http://www.html-js.com/article/CSS-learning-CSS3-Flexbox-->
+		<!--参考资料：http://www.w3cplus.com/css3/flexbox-basics.html-->
+		<div class="page-con">
+			<!--flex: auto;效果：（伸缩项添加）自适应宽度，换行伸缩项自动填充整行-->
+			<div class="flex-con">
+				<div class="flex-item">
+					1
+				</div>
+				<div class="flex-item">
+					2
+				</div>
+				<div class="flex-item">
+					3
+				</div>
+				<div class="flex-item">
+					4
+				</div>
+			</div>
+			<!--justify-content: flex-end;效果：（容器添加）相当于对伸缩项flaot:right;-->
+			<div class="flex-con-2">
+				<div class="flex-item-2">
+					1
+				</div>
+				<div class="flex-item-2">
+					2
+				</div>
+				<div class="flex-item-2">
+					3
+				</div>
+				<div class="flex-item-2">
+					4
+				</div>
+			</div>
+			<!--align-items: center;效果：（容器添加）伸缩项竖直居中！此处可用于图片效果-->
+			<div class="flex-con-3">
+				<div class="flex-item-2">
+					1
+				</div>
+				<div class="flex-item-2">
+					2
+				</div>
+				<div class="flex-item-2">
+					3
+				</div>
+				<div class="flex-item-2">
+					4
+				</div>
+			</div>
+			<div class="flex-con-2">
+				<div class="flex-item-3">
+					1
+				</div>
+				<div class="flex-item-3">
+					2
+				</div>
+				<div class="flex-item-3">
+					3
+				</div>
+				<div class="flex-item-3">
+					4
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

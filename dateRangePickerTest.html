@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{margin: 0;padding: 0;}
+			html,body{width: 100%;height: 100%;}
+			body{
+			    overflow: auto;
+			    background: -webkit-linear-gradient(left, #071426, #212c44, #212c44, #182439, #071426, #020f20);
+			}
+			.input-con{
+				width: 200px;
+				margin: 20px auto;
+			}
+			input{
+				color: #FFFFFF;
+				border: 1px solid #43506f;
+				padding: 5px 10px;
+				background-color: transparent;
+			}
+		</style>
+		<!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>-->
+		<link rel="stylesheet" type="text/css" href="css/daterangepicker-bs3.css"/>
+		<!--<link rel="stylesheet" type="text/css" href="css/bootstrap-tagsinput.css"/>-->
+		<script src="js/jq.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/moment.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/daterangepicker.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				$('.date-picker').daterangepicker(null,function(start, end, label) {
+                    console.log("test");
+                });
+			})
+		</script>
+	</head>
+	<body>
+		<div class="input-con">
+			<input type="text" class="date-picker" name="" id="" value="" />
+		</div>
+		
+	</body>
+</html>

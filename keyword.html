@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{margin: 0;padding: 0;border: none;}
+			.main-con{margin: 0 auto;width: 320px;text-align: center;font-size: 16px;color: #333333;}
+			.line-key{-webkit-box-sizing: border-box;box-sizing: border-box;width: 100%;background-color: #EEEEEE;border-bottom: 1px solid #C3C3C3;padding: 10px;}
+			.font-key{color: #DE0022;}
+		</style>
+		<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var keyword="可乐";
+			var word=["百事可乐","可口可乐","零度可口可乐","百事可乐拉罐","可口可乐拉罐","百事可乐大罐"];
+			function listByKeyword(word,keyword){
+				$(word).each(function(i,item){
+					if(item.indexOf(keyword)!=-1){
+						var str = "<div calss='line-key'>"+ item.split(keyword)[0] + "<span class='font-key'>" + keyword+"</span>"+item.split(keyword)[1]+"</div>";
+					}else{
+						var str = "<div calss='line-key'>"+ item +"</div>";
+					}
+						
+					
+					
+					//console.log(JSON.stringify(array));
+					$(".main-con").append(str);
+				});
+			};
+			
+			$(function(){
+				listByKeyword(word,keyword);
+			});
+		</script>
+	</head>
+	<body>
+		<div class="main-con">
+			
+		</div>
+	</body>
+</html>

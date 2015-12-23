@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+				<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta http-equiv="Expires" content="-1">
+		<meta http-equiv="pragram" content="no-cache">
+		<title></title>
+		<meta name="MobileOptimized" content="320">
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1 ,user-scalable=no">
+		<style type="text/css">
+			*{
+				margin: 0px;
+				padding: 0px;
+				border: none;
+			}
+			html,body{
+				width: 100%;
+				height: 100%;
+			}
+			body{
+				-webkit-user-select: none;
+			}
+			.main-con{
+				min-width: 320px;
+				width: 100%;
+				height: 100%;
+				max-width: 640px;
+				margin: 0 auto;
+				display: block;
+				overflow: hidden;
+			}
+			.page-con{
+				width: 100%;
+				height: 100%;
+				position: relative;
+			}
+			.page-con img{
+				width: 100%;
+				display: block;
+			}
+			.page-section{
+				position: absolute;
+			}
+			.page-title1-3{
+				top: 40%;
+				width: 100%;
+				height: 75px;
+				background: url(img/pageTitle1-3.png) no-repeat;
+				-webkit-background-size: 320px 75px;
+				background-size: 320px 75px;
+			}
+			.page-finger{
+				top: 40%;
+				width: 100%;
+				height: 30%;
+				z-index: 5;
+			}
+		</style>
+		<script src="js/zepto.1.1.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+//				alert($(".main-con").html()+"not ready");
+			});
+		</script>
+	</head>
+	<body>
+		<div class="main-con">
+			<div class="page-con">
+				<div id="longTouchImg" class="page-section page-finger">
+					
+				</div>
+				<div class="page-section page-title1-3">
+				</div>
+			</div>
+		</div>
+		<script src="js/longtouch.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			document.getElementById("longTouchImg").addEventListener("touchstart",function(e){
+				longtouchStart(e.changedTouches[0]);
+			},false);
+			document.getElementById("longTouchImg").addEventListener("touchend",function(e){
+				longtouchEnd(e.changedTouches[0]);
+			},false);
+		</script>
+	</body>
+</html>

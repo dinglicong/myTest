@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{margin: 0;padding: 0;}
+			html,body{width: 100%;height: 100%;}
+			.border-box{
+				-webkit-box-sizing: border-box;
+				box-sizing: border-box;
+			}
+			.test-marquee{
+				-webkit-box-sizing: border-box;
+				box-sizing: border-box;
+				padding: 20px;
+				background: #EFEFEF;
+				border: 5px dotted #999;
+			}
+			.test-bg{
+				width: 300px;
+				height: 165px;
+				background: url(img/girl1.jpg) no-repeat;
+				-webkit-background-size: cover;
+				background-size: cover;
+			}
+			.test-mask{
+				-webkit-mask-box-image: url(img/photo_bg.png) round round;
+				/*
+				 * 自己 try try
+				 */
+				/*-webkit-mask-box-image: url(img/photo_bg.png) stretch stretch;
+				-webkit-mask-box-image: url(img/photo_bg.png) repeat repeat;*/
+				-webkit-mask-repeat: no-repeat;
+			}
+			.test-background-clip{
+				border: 5px dotted #666;
+				padding: 15px;
+				font-size: 20px;
+				font-weight: bold;
+				/*内部填充文字颜色约等于color 
+				 尼玛有一个然并卵的功能
+				 * */
+				-webkit-text-fill-color: transparent;
+				
+				/*
+				 * 背景图覆盖border全区域（默认）
+				 */
+				-webkit-background-clip: border-box;
+				/*背景图只覆盖padding内的区域*/
+				-webkit-background-clip: padding-box;
+				/*背景图只覆盖content内的区域*/
+				-webkit-background-clip: content-box;
+				/*文字颜色是背景*/
+				-webkit-background-clip: -webkit-text;
+			}
+		</style>
+	</head>
+	<body>
+		<h3>参考文献：<a href="http://ued.ctrip.com/webkitcss/index.html">http://ued.ctrip.com/webkitcss/index.html</a></h3>
+		<div class="test-marquee">
+			<marquee direction="right" repetition="infinite">marqueeTest marqueeTest marqueeTest</marquee>
+		</div>
+		<div class="test-bg test-mask"></div>
+		<div class="test-bg test-background-clip border-box">
+			<p>遮罩文字测试</p>
+			<p>遮罩文字测试</p>
+			<p>遮罩文字测试</p>
+		</div>
+	</body>
+</html>

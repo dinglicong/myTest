@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no,minimum-scale=1,maximum-scale=1.0"/>
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/home.css"/>
+		<script src="js/zepto.1.1.3.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div class="container">
+			<div class="item-secation">
+				<div class="item">
+					<div class="item-red">
+						<input class=""/>
+					</div>
+					
+					<div class="item-blue">
+						
+					</div>
+				</div>
+				<div class="item">
+					<p>结论：box-flex的弹性布局仅仅针对display:block的元素起作用，但对于input元素，即使设置其为块级元素也无法达到弹性布局的效果
+					<span>本次试验通过将input放入div中，并对该div设置box-flex属性来实现弹性布局，结果<span style="color:#CE0000;">不完全成功</span></span>
+					<span>当且仅当div中的input长度小于弹性长度的时候,其父级div的box-flex生效，如例</span>
+					</p>
+					
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="item-secation">
+				<div class="item">
+					<div class="item-red">
+						<img src="img/hot1.jpg"/>
+					</div>
+					<div class="item-red">
+						<img src="img/hot2.jpg"/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

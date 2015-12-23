@@ -1,0 +1,301 @@
+*{
+	margin: 0px;
+	padding: 0px;
+	border: none;
+}
+html,body{
+	width: 100%;
+	height: 100%;
+}
+body{
+	-webkit-user-select: none;
+}
+.page-con{
+	min-width: 320px;
+	max-width: 640px;
+	width: 100%;
+	margin: 0 auto;
+	height: 100%;
+	position: relative;
+	background: #000000;
+}
+.page-photo-con{
+	position: absolute;
+	width: 640px;
+	height: 600px;
+	bottom: 0px;
+	background: url(../img/animateCirclebg.png) no-repeat;
+}
+.page-photo-item{
+	width: 80px;
+	height: 80px;
+	overflow: hidden;
+	-webkit-border-radius: 50%;
+	border-radius: 50%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	z-index: 3;
+	margin-top: -40px;
+	margin-left: -40px;
+	-webkit-transition: opacity 0.8s;
+	transition: opacity 0.8s;
+}
+.page-photo-item img{
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	-webkit-border-radius: 50%;
+	border-radius: 50%;
+	display: block;
+}
+.page-current{
+	background: url(../img/photo_bg.png) no-repeat;
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -49px;
+	margin-left: -50px;
+	-webkit-transform: translate(0px,-149px);
+	transform: translate(0px,-149px);
+}
+.position-1{
+	-webkit-transform: translate(-149px,0px);
+	transform: translate(-149px,0px);
+}
+.position-2{
+	-webkit-transform: translate(0px,-149px);
+	transform: translate(0px,-149px);
+}
+.position-3{
+	-webkit-transform: translate(149px,0px);
+	transform: translate(149px,0px);
+}
+.position-4{
+	-webkit-transform: translate(0px,149px);
+	transform: translate(0px,149px);
+}
+.position-hidden{
+	-webkit-opacity: 0;
+	opacity: 0;
+}
+@-webkit-keyframes circleMove2{
+	0%{-webkit-transform: translate(0px,-149px)}
+	8.3%{-webkit-transform: translate(-23px,-146px)}
+	16.6%{-webkit-transform: translate(-42px,-143px)}
+	25%{-webkit-transform: translate(-61px,-137px)}
+	33.3%{-webkit-transform: translate(-79px,-124px)}
+	41.6%{-webkit-transform: translate(-95px,-116px)}
+	50%{-webkit-transform: translate(-109px,-102px)}
+	58.3%{-webkit-transform: translate(-122px,-86px)}
+	66.6%{-webkit-transform: translate(-133px,-69px)}
+	75%{-webkit-transform: translate(-140px,-51px)}
+	83.3%{-webkit-transform: translate(-146px,-31px)}
+	100%{-webkit-transform: translate(-149px,0px)}
+}
+@keyframes circleMove2{
+	0%{transform: translate(0px,-149px)}
+	8.3%{transform: translate(-23px,-146px)}
+	16.6%{transform: translate(-42px,-143px)}
+	25%{transform: translate(-61px,-137px)}
+	33.3%{transform: translate(-79px,-124px)}
+	41.6%{transform: translate(-95px,-116px)}
+	50%{transform: translate(-109px,-102px)}
+	58.3%{transform: translate(-122px,-86px)}
+	66.6%{transform: translate(-133px,-69px)}
+	75%{transform: translate(-140px,-51px)}
+	83.3%{transform: translate(-146px,-31px)}
+	100%{transform: translate(-149px,0px)}
+}
+@-webkit-keyframes circleMove3{
+	0%{-webkit-transform: translate(149px,0px)}
+	8.3%{-webkit-transform: translate(146px,-23px)}
+	16.6%{-webkit-transform: translate(143px,-42px)}
+	25%{-webkit-transform: translate(137px,-61px)}
+	33.3%{-webkit-transform: translate(124px,-79px)}
+	41.6%{-webkit-transform: translate(116px,-95px)}
+	50%{-webkit-transform: translate(102px,-109px)}
+	58.3%{-webkit-transform: translate(86px,-122px)}
+	66.6%{-webkit-transform: translate(69px,-133px)}
+	75%{-webkit-transform: translate(51px,-140px)}
+	83.3%{-webkit-transform: translate(31px,-146px)}
+	100%{-webkit-transform: translate(0px,-149px)}
+}
+@keyframes circleMove3{
+	0%{transform: translate(149px,0px)}
+	8.3%{transform: translate(146px,-23px)}
+	16.6%{transform: translate(143px,-42px)}
+	25%{transform: translate(137px,-61px)}
+	33.3%{transform: translate(124px,-79px)}
+	41.6%{transform: translate(116px,-95px)}
+	50%{transform: translate(102px,-109px)}
+	58.3%{transform: translate(86px,-122px)}
+	66.6%{transform: translate(69px,-133px)}
+	75%{transform: translate(51px,-140px)}
+	83.3%{transform: translate(31px,-146px)}
+	100%{transform: translate(0px,-149px)}
+}
+@-webkit-keyframes circleMove4{
+	0%{-webkit-transform: translate(0px,149px)}
+	8.3%{-webkit-transform: translate(23px,146px)}
+	16.6%{-webkit-transform: translate(42px,143px)}
+	25%{-webkit-transform: translate(61px,137px)}
+	33.3%{-webkit-transform: translate(79px,124px)}
+	41.6%{-webkit-transform: translate(95px,116px)}
+	50%{-webkit-transform: translate(109px,102px)}
+	58.3%{-webkit-transform: translate(122px,86px)}
+	66.6%{-webkit-transform: translate(133px,69px)}
+	75%{-webkit-transform: translate(140px,51px)}
+	83.3%{-webkit-transform: translate(146px,31px)}
+	100%{-webkit-transform: translate(149px,0px)}
+}
+@keyframes circleMove4{
+	0%{transform: translate(0px,149px)}
+	8.3%{transform: translate(23px,146px)}
+	16.6%{transform: translate(42px,143px)}
+	25%{transform: translate(61px,137px)}
+	33.3%{transform: translate(79px,124px)}
+	41.6%{transform: translate(95px,116px)}
+	50%{transform: translate(109px,102px)}
+	58.3%{transform: translate(122px,86px)}
+	66.6%{transform: translate(133px,69px)}
+	75%{transform: translate(140px,51px)}
+	83.3%{transform: translate(146px,31px)}
+	100%{transform: translate(149px,0px)}
+}
+.circleMove2{
+	-webkit-animation: circleMove2 0.5s linear forwards;
+	animation: circleMove2 0.5s linear forwards;
+}
+.circleMove3{
+	-webkit-animation: circleMove3 0.5s linear forwards;
+	animation: circleMove3 0.5s linear forwards;
+}
+.circleMove4{
+	-webkit-animation: circleMove4 0.5s linear forwards;
+	animation: circleMove4 0.5s linear forwards;
+}
+@-webkit-keyframes reverseCircleMove1{
+	0%{-webkit-transform: translate(-149px,0px)}
+	8.3%{-webkit-transform: translate(-146px,-31px)}
+	16.6%{-webkit-transform: translate(-140px,-51px)}
+	25%{-webkit-transform: translate(-133px,-69px)}
+	33.3%{-webkit-transform: translate(-122px,-86px)}
+	41.6%{-webkit-transform: translate(-109px,-102px)}
+	50%{-webkit-transform: translate(-95px,-116px)}
+	58.3%{-webkit-transform: translate(-79px,-124px)}
+	66.6%{-webkit-transform: translate(-61px,-137px)}
+	75%{-webkit-transform: translate(-42px,-143px)}
+	83.3%{-webkit-transform: translate(-23px,-146px)}
+	100%{-webkit-transform: translate(0px,-149px)}
+}
+@keyframes reversecircleMove1{
+	0%{transform: translate(-149px,0px)}
+	8.3%{transform: translate(-146px,-31px)}
+	16.6%{transform: translate(-140px,-51px)}
+	25%{transform: translate(-133px,-69px)}
+	33.3%{transform: translate(-122px,-86px)}
+	41.6%{transform: translate(-109px,-102px)}
+	50%{transform: translate(-95px,-116px)}
+	58.3%{transform: translate(-79px,-124px)}
+	66.6%{transform: translate(-61px,-137px)}
+	75%{transform: translate(-42px,-143px)}
+	83.3%{transform: translate(-23px,-146px)}
+	100%{transform: translate(0px,-149px)}
+}
+@-webkit-keyframes reversecircleMove2{
+	0%{-webkit-transform: translate(0px,-149px)}
+	8.3%{-webkit-transform: translate(31px,-146px)}
+	16.6%{-webkit-transform: translate(51px,-140px)}
+	25%{-webkit-transform: translate(69px,-133px)}
+	33.3%{-webkit-transform: translate(86px,-122px)}
+	41.6%{-webkit-transform: translate(102px,-109px)}
+	50%{-webkit-transform: translate(116px,-95px)}
+	58.3%{-webkit-transform: translate(124px,-79px)}
+	66.6%{-webkit-transform: translate(137px,-61px)}
+	75%{-webkit-transform: translate(143px,-42px)}
+	83.3%{-webkit-transform: translate(146px,-23px)}
+	100%{-webkit-transform: translate(149px,0px)}
+}
+@keyframes reversecircleMove2{
+	0%{transform: translate(0px,-149px)}
+	8.3%{transform: translate(31px,-146px)}
+	16.6%{transform: translate(51px,-140px)}
+	25%{transform: translate(69px,-133px)}
+	33.3%{transform: translate(86px,-122px)}
+	41.6%{transform: translate(102px,-109px)}
+	50%{transform: translate(116px,-95px)}
+	58.3%{transform: translate(124px,-79px)}
+	66.6%{transform: translate(137px,-61px)}
+	75%{transform: translate(143px,-42px)}
+	83.3%{transform: translate(146px,-23px)}
+	100%{transform: translate(149px,0px)}
+}
+@-webkit-keyframes reversecircleMove3{
+	0%{-webkit-transform: translate(149px,0px)}
+	8.3%{-webkit-transform: translate(146px,31px)}
+	16.6%{-webkit-transform: translate(140px,51px)}
+	25%{-webkit-transform: translate(133px,69px)}
+	33.3%{-webkit-transform: translate(122px,86px)}
+	41.6%{-webkit-transform: translate(109px,102px)}
+	50%{-webkit-transform: translate(95px,116px)}
+	58.3%{-webkit-transform: translate(79px,124px)}
+	66.6%{-webkit-transform: translate(61px,137px)}
+	75%{-webkit-transform: translate(42px,143px)}
+	83.3%{-webkit-transform: translate(23px,146px)}
+	100%{-webkit-transform: translate(0px,149px)}
+}
+@keyframes reversecircleMove3{
+	0%{transform: translate(149px,0px)}
+	8.3%{transform: translate(146px,31px)}
+	16.6%{transform: translate(140px,51px)}
+	25%{transform: translate(133px,69px)}
+	33.3%{transform: translate(122px,86px)}
+	41.6%{transform: translate(109px,102px)}
+	50%{transform: translate(95px,116px)}
+	58.3%{transform: translate(79px,124px)}
+	66.6%{transform: translate(61px,137px)}
+	75%{transform: translate(42px,143px)}
+	83.3%{transform: translate(23px,146px)}
+	100%{transform: translate(0px,149px)}
+}
+.reversecircleMove1{
+	-webkit-animation: reverseCircleMove1 0.5s linear forwards;
+	animation: reverseCircleMove1 0.5s linear forwards;
+}
+.reversecircleMove2{
+	-webkit-animation: reversecircleMove2 0.5s linear forwards;
+	animation: reversecircleMove2 0.5s linear forwards;
+}
+.reversecircleMove3{
+	-webkit-animation: reversecircleMove3 0.5s linear forwards;
+	animation: reversecircleMove3 0.5s linear forwards;
+}
+.page-curve,.page-finger{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -30px;
+	margin-left: -27px;
+	-webkit-transform: translate(80px,-80px);
+	transform: translate(80px,-80px);
+}
+@-webkit-keyframes curveMove{
+	from{-webkit-transform: rotate(45deg);}
+	to{-webkit-transform: rotate(0deg);}
+}
+@keyframes curveMove{
+	from{transform: rotate(45deg);}
+	to{transform: rotate(0deg);}
+}
+.page-finger img{
+	-webkit-transform-origin: 0% 100%;
+	transform-origin: 0% 100%;
+	-webkit-animation: curveMove 0.8s linear infinite;
+	animation: curveMove 0.8s linear infinite;
+}
+.toNone{
+	display: none;
+}

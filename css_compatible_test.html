@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{margin: 0;padding: 0;border: none;}
+			.main-con{width: 100%;max-width: 640px;margin: 0 auto;border: 1px solid #CDCDCD;}
+			.main-con:after {content: ""; clear: both;display: block;}
+			p{font-size: 14px;color: #666666;width: 200px;}
+			p:first-letter {font-size: 2em;float: left;}
+			.item-float{width: 100px;height: 50px;margin-left:10px;display: inline-block; float: left;}
+			.bg-1{background: #028F02;}
+			.bg-2{background: #0C4B9F;}
+			.item-margin{width: 100px;height: 50px;margin:10px;}
+			.list-con{width: 300px;}
+			.float-left{float: left;}
+			.margin-father{margin: 20px;}
+			.margin-son{margin: 10px;}
+			.item-minHeight{width: 100px;min-height: 50px;height: auto !important;height: 50px;}
+		</style>
+	</head>
+	<body>
+		<div class="main-con">
+			<p>此处测试:first-letter对浏览器兼容性（ IE6需在该伪类后加空格再链接"{"）</p>
+			<div class="item-float bg-1" style="display: inline;"></div>
+			<div class="item-float bg-2"></div>
+			<div class="list-con">
+				<div class="item-margin bg-1"></div>
+				<div class="item-margin bg-2"></div>
+				<div class="item-margin bg-1"></div>
+				<div class="item-margin bg-2"></div>
+			</div>
+			<div class="margin-father">
+				<div class="item-margin margin-son bg-1">
+					
+				</div>
+			</div>
+			<div class="item-minHeight bg-1">
+				
+			</div>
+		</div>
+	</body>
+</html>

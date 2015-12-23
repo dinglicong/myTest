@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	<script type="text/javascript">
+			var myImage = (function(){
+				var imgNode = document.createElement("img");
+				document.body.appendChild(imgNode);
+				
+				return {
+					setSrc:function(src){
+						imgNode.src = src;
+					}
+				}
+			})();
+			
+			
+			var proxyImage = (function(){
+				var img = new Image;
+				img.onload = function(){
+					myImage.setSrc(this.src);
+				}
+				
+				return {
+					setSrc: function(src){
+						myImage.setSrc("./img/beauty.jpg");
+						img.src = src;
+					}
+				}
+				
+			})();
+			
+			proxyImage.setSrc("http://image.tianjimedia.com/uploadImages/2013/049/5U9F82278VAZ.jpg");
+		</script>
+	</body>
+</html>

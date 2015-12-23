@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.btn{
+				display: inline-block;
+				background: #0099FF;
+				color: #FFFFFF;
+				padding: 3px 8px;
+			}
+		</style>
+		<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<!--<script src="js/jquery.uploadify.min.js" type="text/javascript" charset="utf-8"></script>-->
+		<script src="js/jquery.ui.widget.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.fileupload.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+//				$("#uploadify").uploadify({
+//			        'uploader': 'uploadify.swf',
+//			        'script': '/test',
+//			        'cancelImg': 'cancel.png',
+//			        'folder': 'UploadFile',
+//			        'queueID': 'fileQueue',
+//			        'auto': false,
+//			        'multi': true,
+//			        'onInit':function(){alert("1");},
+//			        'onSelect': function(e, queueId, fileObj)
+//			        {
+//			            console.log("唯一标识:" + queueId + "\r\n" +
+//			                  "文件名：" + fileObj.name + "\r\n" +
+//			                  "文件大小：" + fileObj.size + "\r\n" +
+//			                  "创建时间：" + fileObj.creationDate + "\r\n" +
+//			                  "最后修改时间：" + fileObj.modificationDate + "\r\n" +
+//			                  "文件类型：" + fileObj.type
+//			            );
+//			
+//			        }
+//			    });
+//			    var fileUpload = $("#fileUpload").fileupload({
+//				    url: 'upload.do',
+//				    formData:{dataId:1178},
+//				    sequentialUploads: true
+//				});
+			    $(".btn").on("click",function(){
+			    	var dataType= $(this).attr("data-type");
+//			    	console.log(fileUpload);
+			    	$("#fileUpload").fileupload({
+					    url: 'upload.do',
+					    formData:{dataId:1178,type:dataType},
+					    sequentialUploads: true
+					});
+			    	$("#fileUpload").trigger("click");
+			    })
+			    
+			});
+		</script>
+	</head>
+	<body>
+		<!--<div id="fileQueue"></div>
+	    <input type="file" name="uploadify" id="uploadify" />
+	    <p>
+	      <a href="javascript:$('#uploadify').uploadifyUpload()">上传</a>| 
+	      <a href="javascript:$('#uploadify').uploadifyClearQueue()">取消上传</a>
+	    </p>-->
+	    <div class="btn" type="button" data-type="photo1">test</div>
+	    <div class="btn" type="button" data-type="photo2">test</div>
+	    <div class="btn" type="button" data-type="photo3">test</div>
+	    <div class="btn" type="button" data-type="photo4">test</div>
+	    <input type="file" name="photoUpload" id="fileUpload" style="visibility: hidden;" value="" />
+	</body>
+</html>

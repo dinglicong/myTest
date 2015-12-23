@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta http-equiv="Expires" content="-1">
+		<meta http-equiv="pragram" content="no-cache">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no,minimum-scale=1,maximum-scale=1.0"/>-->
+		<script type="text/javascript">
+			var phoneWidth =  parseInt(window.screen.width);
+			var phoneScale = phoneWidth/640;
+			var ua = navigator.userAgent;
+			if (/Android (\d+\.\d+)/.test(ua)){
+				var version = parseFloat(RegExp.$1);
+				// andriod 2.3
+				if(version>2.3){
+					document.write('<meta name="viewport" content="width=640, minimum-scale = '+phoneScale+', maximum-scale = '+phoneScale+', target-densitydpi=device-dpi">');
+				// andriod 2.3以上
+				}else{
+					document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+				}
+				// 其他系统
+			} else {
+				document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+			}
+			//微信去掉下方刷新栏
+			if(RegExp("MicroMessenger").test(navigator.userAgent)){
+				document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+				    WeixinJSBridge.call('hideToolbar');
+				});
+			}
+		</script>
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/iframeVideo.css"/>
+		<script src="js/zepto.1.1.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$(".page-button").on("touchstart",function(){
+					$(".page-mask").removeClass("toNone");
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div class="page-con">
+			<div class="page-button">
+				<img src="img/play.png"/>
+			</div>
+			<div class="page-mask toNone">
+				<iframe class="page-video" href="http://player.youku.com/embed/XNzk5MDEyMTY4" width="640" height="480"></iframe>
+			</div>
+		</div>
+	</body>
+</html>

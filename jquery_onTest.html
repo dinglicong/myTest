@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,minmum-scale=1,maxmum-scale=1,user-scalable=no,target-dengsitydpi=deviec-dpi"/>
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				border: none;
+			}
+			html,body{
+				width: 100%;
+				height: 100%;
+			}
+			.main-con{
+				width: 100%;
+				height: 100%;
+				min-width: 320px;
+				max-width: 640px;
+				margin: 0 auto;
+				position: relative;
+				background-color: #EEEEEE;
+				padding: 0 10px;
+			}
+			.border-con{
+				-webkit-box-sizing: border-box;
+				box-sizing: border-box;
+			}
+			.click-con{
+				width: 100%;
+				padding: 10px;
+				border: 1px solid #CDCDCD;
+				background-color: #FFFFFF;
+			}
+			.click-con .list-con{
+				margin-right: -10px;
+			}
+			.click-con .list-con:after{
+				content: "";
+				clear: both;
+				display: block;
+			}
+			.click-con .item-con{
+				float: left;
+				width: 33.3%;
+			}
+			.click-con .item{
+				margin-right: 10px;
+				margin-bottom: 10px;
+			}
+			.click-con img{
+				width: 100%;
+				display: block;
+			}
+		</style>
+		<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+//			function addMeiMei(){
+//				$($(".item-con")[0]).before('<div class="item-con"><div class="item"><img src="img/temp2-img3.jpg"/></div></div>');
+//			}
+			$(function(){
+				var index = 0;
+				$(".item-con").on("click",function(){
+					index ++;
+					console.log("大胸姑娘"+index);
+				});
+				setInterval(function(){
+					$($(".item-con")[0]).before('<div class="item-con"><div class="item"><img src="img/temp2-img3.jpg"/></div></div>');
+//					$(".list-con").append('<div class="item-con"><div class="item"><img src="img/temp3-img2.jpg"/></div></div>');
+//					$(".list-con").append('<div class="item-con"><div class="item"><img src="img/temp3-img3.jpg"/></div></div>');
+				},3000)
+			})
+		</script>
+	</head>
+	<body>
+		<div class="main-con border-con">
+			<div class="click-con border-con">
+				<div class="list-con">
+					<div class="item-con">
+						<div class="item">
+							<img src="img/temp2-img3.jpg"/>
+						</div>
+					</div>
+					<div class="item-con">
+						<div class="item border-con">
+							<img src="img/temp3-img2.jpg"/>
+						</div>
+					</div>
+					<div class="item-con">
+						<div class="item">
+							<img src="img/temp3-img3.jpg"/>
+						</div>
+					</div>
+				</div>
+			</div>
+			<button onclick="addMeiMei()">添加</button>
+			<style type="text/css">
+				p:first-line{background: #EC971F;}
+			</style>
+			<p>事实证明on绑定的事件对于新增加的元素来说并没有什么卵用</p>
+		</div>
+	</body>
+</html>

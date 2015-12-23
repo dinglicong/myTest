@@ -1,0 +1,24 @@
+*{
+	margin: 0px;
+	padding: 0px;
+	border: none;
+}
+body{
+	
+}
+.input-con{
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	margin-top: 20px;
+	padding: 0 15px;	
+}
+.input-box{
+	border: 1px solid #C3C3C3;
+	overflow: hidden;
+	border-radius: 5px;
+}
+.input-box input{
+	height: 28px;
+	line-height: 28px;
+}

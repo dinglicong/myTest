@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			function Person(){
+				this.name = 10;
+				this.getNameO = function(){
+					console.log(this.name);
+				}
+			}
+			Person.getNameC = function(){
+				console.log(this.name+"Class");
+			}
+			Person.prototype.getNameP = function(){
+				console.log(this.name+"prototype");
+			}
+			var p = new Person();
+			p.name = 20;
+			p.getNameO()
+			Person.getNameC()
+			p.getNameP()
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

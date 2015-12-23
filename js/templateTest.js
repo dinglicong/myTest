@@ -1,0 +1,1 @@
+define(function(){return '<% for(var i = 0, item; item = data[i++];){%> <li> <%= item.text%></li> <%}%>'});

@@ -1,0 +1,15 @@
+{
+	"status":"OK",
+	"content":{
+		"list":[
+			{"card":"ICBC","remainder":"50000"},
+			{"card":"BOC","remainder":"500000"},
+			{"card":"ABC","remainder":"70000"},
+			{"card":"BC","remainder":"100000"},
+			{"card":"CCB","remainder":"300000"},
+			{"card":"MCM","remainder":"800000"},
+			{"card":"CMBC","remainder":"500000"},
+			{"card":"CMSB","remainder":"600000"}
+		]
+	}
+}

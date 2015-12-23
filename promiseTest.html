@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/jq.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			function getDate(url,data,callback){
+				var dtd = $.Deferred();
+				$.ajax({
+					method:"get",
+					url:url,
+					data:data,
+					dataType:"JSON"
+				}).done(function(data){
+					if(data.status == "OK"){
+						callback(data);
+						dtd.resolve(data);
+					}
+				}).fail(function(data){
+					console.log("request error");
+					dtd.reject(data);
+				}).progress(function(data){
+					console.log(data);
+				});
+				return dtd.promise();
+			}
+			
+			var getId = function(){
+				return getDate("./data/mydata.json","",function(data){
+					console.log(data);
+				});
+				
+			}
+			
+			var getCardList = function(data){
+				//var dtd = deferred();
+				return	getDate("./data/data.json",{id:data.content.id},function(data){
+					console.log(data);
+				});
+				
+			}
+			getId().then(getCardList)//.catch(function(e){console.log(e)});
+			//getDate("./data/data.json","",function(data){console.log(data)});//.done(function(data){console.log(data)}).fail(function(data){console.log("请求错误")});
+			
+			
+			var waite = function(){
+				var dtd = $.Deferred();
+				setTimeout(function(){
+					console.log("promise test");
+					dtd.resolve();
+				},5000)
+				return dtd.promise();
+			}
+			//对于promise,done和then效果是
+			waite().then(function(){console.log("promise done")}).fail(function(){console.log("promise fail")});
+//			waite().done(function(){console.log("promise done")}).fail(function(){console.log("promise fail")});
+			
+			
+			function getData(data){
+				var dtd = $.Deferred();
+				console.log("data",data);
+				dtd.resolve(data);
+				return dtd.promise();
+
+				/*
+				 * 另一种写法的promise(原生写法)
+				 * js中没有内置完整的promise机制,此方法作废
+				 */
+//				console.log(Promise);
+//				var promise = Promise();
+//				if(data){
+//					promise.resolve(data);
+//				}else{
+//					promise.reject();
+//				}
+//				
+//				return promise;
+			}
+			
+			function getName(data){
+				console.log("dataName",data.content.name);
+			}
+			
+			getId().then(getData).then(getName);
+			
+		</script>
+	</head>
+	<body>
+		<img id="beauty" src="img/beauty.jpg"/>
+		<script type="text/javascript">
+			var beauty = $("#beauty");
+			beauty.promise().done(function(ele){
+				console.log(ele);
+			});
+		</script>
+	</body>
+</html>

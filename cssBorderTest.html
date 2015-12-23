@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				border: none;
+			}
+			.main-con{
+				width: 100%;
+				min-width: 320px;
+				max-width: 640px;
+				margin: 0 auto;
+			}
+			.border-con{
+				width: 100px;
+				height: 60px;
+				background: #0C4B9F;
+				-moz-border-top-colors: #d4d0c8 white;
+				-moz-border-left-colors: #d4d0c8 white;
+				-moz-border-right-colors:#404040 #808080;
+				-moz-border-bottom-colors:#404040 #808080;
+				/*-webkit-border
+				-webkit-border-left-colors: #d4d0c8 white;
+				-webkit-border-right-colors:#404040 #808080;
+				-webkit-border-bottom-colors:#404040 #808080;*/
+				border:2px outset;
+			}
+			.a{ width:200px; }
+			.b{ width:100px; }
+			.a{ text-align:center; }  .b{display:inline-block; } 
+			.arrow{       
+			     width:0; height:0; border:5px solid #000;
+			}
+			.arrow{border-color:tranparent #000!important;}
+		</style>
+		<script type="text/javascript">
+			var a=1;
+			console.log("out function: " + a);
+			function test(){
+			    console.log("in function:  " +a);
+			    var a=2;
+			    console.log("in function2:  " +a);
+			};
+			test();
+			function Rectangle(w,h){
+				this.w = w;
+				this.h = h;
+				const s =  (function(){
+					return w*h;
+				})();
+				this.getS = function(){return s};
+			}
+			var myRectangel = new Rectangle(100,70);
+			console.log(myRectangel.getS());
+			myRectangel.s = 200;
+			console.log(myRectangel.getS());
+			console.log(myRectangel.w);
+			console.log(myRectangel.h);
+		</script>
+	</head>
+	<body>
+		<div class="main-con">
+			<div class="border-con">
+			</div>
+			<div class="arrow"></div>
+		</div>
+	</body>
+</html>
