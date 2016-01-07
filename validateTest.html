@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jq.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.validate.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<form id="validatForm" action="" method="post">
+			<p>
+				<label for="com_name">公司名称</label>
+				<input type="text" name="com_name" id="com_name" value="" />
+			</p>
+			<p>
+				<label for="com_mail">公司邮箱</label>
+				<input type="text" name="com_mail" id="" value="" />
+			</p>
+			<p>
+				<label for="job_name">职位名称</label>
+				<input type="text" name="job_name" id="job_name" value="" />
+			</p>
+			<p>
+				<label for="job_pay">职位薪资</label>
+				<input type="text" name="job_pay" id="job_pay" value="" />
+			</p>
+			<p>
+				<label for="job_add">加班补偿</label>
+				<select id="job_add" name="job_add">
+					<option value="0">无</option>
+					<option value="1">调休</option>
+					<option value="2">加班工资</option>
+				</select>
+			</p>
+			<p>
+				<label for="job_team">职位人数</label>
+				<input type="text" name="job_team" id="job_team" value="" />
+			</p>
+			<input type="submit" value="提交"/>
+		</form>
+	</body>
+	<script type="text/javascript">
+		jQuery.extend(jQuery.validator.messages, {
+		    required: "必选字段",
+			remote: "请修正该字段",
+			email: "请输入正确格式的电子邮件",
+			url: "请输入合法的网址",
+			date: "请输入合法的日期",
+			dateISO: "请输入合法的日期 (ISO).",
+			number: "请输入合法的数字",
+			digits: "只能输入整数",
+			creditcard: "请输入合法的信用卡号",
+			equalTo: "请再次输入相同的值",
+			accept: "请输入拥有合法后缀名的字符串",
+			maxlength: jQuery.validator.format("请输入一个 长度最多是 {0} 的字符串"),
+			minlength: jQuery.validator.format("请输入一个 长度最少是 {0} 的字符串"),
+			rangelength: jQuery.validator.format("请输入 一个长度介于 {0} 和 {1} 之间的字符串"),
+			range: jQuery.validator.format("请输入一个介于 {0} 和 {1} 之间的值"),
+			max: jQuery.validator.format("请输入一个最大为{0} 的值"),
+			min: jQuery.validator.format("请输入一个最小为{0} 的值")
+		});
+		
+		$(function(){
+			$.validator.setDefaults({
+				debug:true
+			})
+			
+			$("#validatForm").validate({
+				rules:{
+					com_name:"required",
+					com_mail:{
+						required: true,
+						email: true
+					},
+					job_name:{
+						required: true,
+						minlength: 2
+					},
+					job_pay:{
+						required: true,
+						digits:true,
+						minlength: 4
+					}
+				}
+			});
+			
+		});
+	</script>
+</html>

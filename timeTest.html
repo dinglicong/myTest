@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jq.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/moment.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				/*
+				 *计算10个月前
+				 *麻麻再也不用担心我被日期控价坑了~
+				 * 
+				 * */
+				console.log(moment().subtract(10,"months").calendar());
+				console.log(moment().format("L"));
+				console.log(moment().subtract(10,"months").format("L"));
+				console.log(moment().subtract(10,"days").format("L"));
+				
+				/*
+				 * 2015年第52周星期五的具体日期
+				 */
+				console.log(moment("2015-52-5","GGGG-WW-EE").format("L"))
+			});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
