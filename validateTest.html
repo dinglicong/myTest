@@ -3,6 +3,12 @@
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
+		<style type="text/css">
+			*{margin: 0;padding: 0;}
+			input{-webkit-border-radius: 4px;border-radius: 4px;padding: 5px;border: 1px solid #CDCDCD;}
+			input.error{border: 1px solid #F50903;}
+			label.error{padding-left: 16px;color: #ea5200;}
+		</style>
 		<script src="js/jq.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/jquery.validate.js" type="text/javascript" charset="utf-8"></script>
 	</head>
@@ -13,8 +19,12 @@
 				<input type="text" name="com_name" id="com_name" value="" />
 			</p>
 			<p>
+				<label for="com_phone">联系电话</label>
+				<input type="text" name="com_phone" id="com_phone" value="" />
+			</p>
+			<p>
 				<label for="com_mail">公司邮箱</label>
-				<input type="text" name="com_mail" id="" value="" />
+				<input type="text" name="com_mail" id="com_mail" value="" />
 			</p>
 			<p>
 				<label for="job_name">职位名称</label>
@@ -67,7 +77,16 @@
 			
 			$("#validatForm").validate({
 				rules:{
-					com_name:"required",
+					com_name:{
+						required:true,
+						minlength:2
+					},
+					com_phone:{
+						required:true,
+						digits:true,
+						maxlength:11,
+						minlength:11
+					},
 					com_mail:{
 						required: true,
 						email: true
@@ -79,11 +98,46 @@
 					job_pay:{
 						required: true,
 						digits:true,
-						minlength: 4
+						minlength: 4,
+						priceMinmum:true
+					},
+					job_add:{
+						min:"1"
+					}
+				},
+				messages:{
+					com_name:{
+						//为空提示信息
+						required:"请输入企业名称"
+					},
+					com_phone:{
+						required:"请输入企业联系电话"
+					},
+					com_mail:{
+						required:"请输入邮箱地址",
+						email:"请输入正确的email"
+					},
+					job_name:{
+						required: "请输入职位名称",
+						minlength: "职位名称不小于2个字"
+					},
+					job_pay:{
+						required: "请输入职位薪资",
+						minlength: "工资小于5k滚粗"
+					},
+					job_add:{
+						min:"特么谁给你白加班啊"
 					}
 				}
 			});
-			
+			$.validator.addMethod("priceMinmum",function(value,element){
+				var price = parseInt(value);
+				if(price<5000){
+					return false;
+				}else{
+					return true;
+				}
+			},"少了5k滚粗");
 		});
 	</script>
 </html>
