@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jq.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<input type="text" name="username" id="username" value="" />
+		<input type="text" name="sex" id="sex" value="" />
+		<input type="text" name="age" id="age" value="" />
+		<script type="text/javascript">
+			var arrList = [{name:"1",age:23},{name:"2",age:26},{name:"3",age:24}];
+			/*
+			 * reduce&reduceRight都会选代数组所有项，然后构建一个最终返回的值
+			 * 此方法将会有极大的用处,对数组筛选
+			 */
+			var res = arrList.reduce(function(prev,cur,index,arry){
+				return prev.age<cur.age?cur:prev;
+			});
+			console.log(res);
+			/*
+			 * some对数组的每个元素都进行函数运行，对任一项返回为true,则返回为true,
+			 * 
+			 */
+			var isOder = arrList.some(function(item){
+				return item.age>27;
+			});
+			console.log(isOder);
+			/*
+			 * map对数组的每个元素都进行函数运行，返回每次函数调用的结果组成的数组
+			 */
+			var resArr = arrList.map(function(item){
+				if(item.age>25){
+					item.des = "晚婚";
+				}
+				return item
+			});
+			console.log(resArr)
+		</script>
+	</body>
+</html>
