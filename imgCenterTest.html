@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{margin: 0;padding: 0;}
+			html,body{width: 100%;height: 100%;}
+			.mask{
+				position: absolute;
+				z-index: 20;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background: rgba(0,0,0,0.6);
+				background-color: #000000 \9;
+				filter: alpha(opacity=60) \9;
+			}
+			.dialog-con{
+				position: absolute;
+				z-index: 30;
+			}
+			.dialog-con.img-dialog{
+				width: 100%;
+				height: 100%;
+				+display: table;
+			}
+			.img-dialog .img-con{
+				width: 100%;
+				height: 100%;
+				+height: auto;
+				+position: absolute;
+				+top: 50%;
+			}
+			.img-dialog img{
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				margin: auto;
+				max-width: 100%;
+				max-height: 100%;
+				vertical-align: middle;
+				+position: relative;
+				+top: -50%;
+				+bottom: auto;
+				+left: auto;
+				+right: auto;
+				+margin:  0 auto;
+				+display: block;
+			}
+			/*.img-mask p{
+				+position: relative;
+				color: #FFFFFF;
+			}*/
+			body{
+				background: url(img/girl1.jpg) no-repeat;
+			}
+		</style>
+		<script src="js/jq.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<!--
+			本方法虽然可以让IE7下图片中心居中，但是IE7下失去了图片的自适应能力，
+			故而此后不推荐使用这种方式显示图片
+		-->
+		<div class="mask">
+			
+		</div>
+		<div class="dialog-con img-dialog">
+			<div class="img-con">
+				<img src="img/girl1.jpg"/>
+			</div>
+		</div>
+		<!--<table width="100%">
+			<tr>
+				<td height="400px" style="text-align: center;">
+					<img src="img/beauty.jpg"/>
+				</td>
+			</tr>
+		</table>-->
+	</body>
+</html>

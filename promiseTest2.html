@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/jq.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			function getDate(url, data, callback) {
+				var dtd = $.Deferred();
+				$.ajax({
+					method: "get",
+					url: url,
+					data: data,
+					dataType: "JSON"
+				}).done(function(data) {
+					if(data.status == "OK") {
+						callback(data);
+						dtd.resolve(data);
+					}
+				}).fail(function(data) {
+					console.log("request error");
+					dtd.reject(data);
+				}).progress(function(data) {
+					console.log(data);
+				});
+				return dtd.promise();
+			}
+
+			var getId = function() {
+				return getDate("./data/mydata.json", "", function(data) {
+					console.log(data);
+				});
+
+			}
+
+			var getCardList = function(data) {
+					//var dtd = deferred();
+					return getDate("./data/data.json", {
+						id: data.content.id
+					}, function(data) {
+						console.log(data);
+					});
+
+				}
+			//getId().then(getCardList)//.catch(function(e){console.log(e)});
+
+			function ajaxPost(url, fn) {
+				return $.ajax({
+					type: "get",
+					url: url,
+					async: true,
+					dataType: 'json'
+				});
+			}
+		</script>
+	</head>
+
+	<body>
+		<img id="beauty" src="img/beauty.jpg" />
+		<script type="text/javascript">
+			//			var beauty = $("#beauty");
+			//			beauty.promise().done(function(ele){
+			//				console.log(ele);
+			//			});
+			//			function post(url,fn){
+			//				return $.ajax({
+			//					type:"get",
+			//					url:url,
+			//					async:true,
+			//					success:function(data){
+			//						if(data.status=="OK"){
+			//							fn(data);
+			//						}else{
+			//							alert(data.errorMsg)
+			//						}
+			//					}
+			//				});
+			//			}
+			//			$(function(){
+			//				post("./data/data.json",function(data){
+			//					console.log(data);
+			//				}).then(function(data){
+			//					console.log(data,"then");
+			//				})
+			//			})
+			if (!Function.prototype.bind) {  
+			  Function.prototype.bind = function (oThis) {  
+			    if (typeof this !== "function") {  
+			      // closest thing possible to the ECMAScript 5 internal IsCallable function        
+			      throw new TypeError("Function.prototype.bind - what is trying to be bound is not callable");  
+			    }  
+			   
+			    var aArgs = Array.prototype.slice.call(arguments, 1),   
+			        fToBind = this,   
+			        fNOP = function () {},  
+			        fBound = function () {  
+			          return fToBind.apply(this instanceof fNOP && oThis ? this : oThis || window,  
+			                 aArgs.concat(Array.prototype.slice.call(arguments)));  
+			        };  
+			   
+			    fNOP.prototype = this.prototype;  
+			    fBound.prototype = new fNOP();  
+			   
+			    return fBound;  
+			  };}  
+			function getData() {
+				return ajaxPost('./data/data.json');
+			}
+			
+			
+			function getMyData() {
+				return ajaxPost('./data/mydata.json');	
+			}
+			
+			getData().then(getMyData.bind(self))
+					.then(function(data) {
+						alert(JSON.stringify(data))
+					})
+		</script>
+	</body>
+
+</html>

@@ -4,8 +4,109 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,maxmum-scale=1,minmum-scale=1"/>	
 		<title></title>
+		<style type="text/css">
+			html,body{margin: 0;padding: 0;}
+			html,body,#mapCon{width: 100%;height: 100%;}
+			.fl{float: left;}
+			.fr{float: right;}
+			.text-con{width: 65%;font-size: 14px;}
+			.bnt-con{width: 35%;}
+			.btn{cursor: pointer; width: 50px;margin-bottom: 5px; padding: 5px; text-align: center;color: #fff;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;}
+			.btn-green{background-color: #00cc99;}
+			.btn-blue{background-color: #66ccff;}
+			.btn-orange{background-color: #ff6600;}
+			.btn-send{width: 100%;background-color: #C0C0C0;color: #333333;}
+			.clearfix{clear: both;}
+			.login-con{z-index:2000; position: absolute; top: 20px;border: 1px solid #CDCDCD;width: 220px; height: 50px;background: #FFFFFF;}
+		</style>
+		<script src="js/jq.js" type="text/javascript" charset="utf-8"></script>
 		<script src="http://api.map.baidu.com/api?v2.0&ak=EzWsBs55tp2sh3ZVwjUNlLE7" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<body>
+		<!--<div id="" style="width: 220px;height: 55px;">
+			<div class="text-con fl">
+				<p>川A12345&nbsp;张师傅</p>
+				<p>13512345678</p>
+				<p>200单&nbsp;4.9分</p>
+			</div>
+			<div class="btn-con fr">
+				<div class="btn btn-green">空载</div>
+				<div class="btn btn-blue">半载</div>
+				<div class="btn btn-green">满载</div>
+			</div>
+			<div class="btn btn-send clearfix">
+				发送用车信息
+			</div>
+		</div>-->
+		<div class="login-con">
+			
+		</div>
+		<div id="mapCon">
+			
+		</div>
+		<script type="text/javascript">
+			function getDeatil(e){
+				var cur_o = e.target?$(e.target):$(e.srcElement);
+				console.log(cur_o.html());
+//				console.log($(this));
+//				console.log($(this).html())
+			}
+			$(document).on("click",".btn",function(){
+				console.log($(this).html())
+			});
+			
+		
+			var map = new BMap.Map("mapCon");
+			var point = new BMap.Point(116.404, 39.915);
+			map.centerAndZoom(point, 15);
+			
+			map.enableScrollWheelZoom();   //启用滚轮放大缩小，默认禁用
+			map.enableContinuousZoom();    //启用地图惯性拖拽，默认禁用
+			
+			//创建遮罩物
+			var myIcon = new BMap.Icon("./img/car.png", new BMap.Size(32,20));
+			
+			
+			var marker = new BMap.Marker(new BMap.Point(116.400, 39.915),{icon:myIcon}); // 创建点
+			var marker2 = new BMap.Marker(new BMap.Point(116.414, 39.925),{icon:myIcon});
+			var marker3 = new BMap.Marker(new BMap.Point(116.400, 39.900),{icon:myIcon});
+			map.addOverlay(marker2);              // 将标注添加到地图中
+			map.addOverlay(marker);
+			map.addOverlay(marker3);
+			
+			//遮罩物说明代码
+//			var sContent =  
+//			"<h4 style='margin:0 0 5px 0;padding:0.2em 0'>天安门</h4>" +   
+//			"<img style='float:right;margin:4px' id='imgDemo' src='http://avatar.csdn.net/4/7/8/1_sd0902.jpg' width='139' height='104' title='天安门'/>" +   
+//			"<p style='margin:0;line-height:1.5;font-size:13px;text-indent:2em'>天安门坐落在中国北京市中心,故宫的南侧,与天安门广场隔长安街相望,是清朝皇城的大门...</p>" +   
+//			"</div>";
+			
+			var sContent = '<div class="text-con fl">'
+			+'	<p>川A12345&nbsp;张师傅</p>'
+			+'	<p>13512345678</p>'
+			+'	<p>200单&nbsp;4.9分</p>'
+			+'</div>'
+			+'<div class="btn-con fr">'
+			+'	<div class="btn btn-green" onclick="getDeatil(event)">空载</div>'
+			+'	<div class="btn btn-blue" onclick="getDeatil(event)">半载</div>'
+			+'	<div class="btn btn-green">满载</div>'
+			+'</div>'
+			+'<div class="btn btn-send clearfix" onclick="getDeatil(event)">'
+			+	'发送用车信息'
+			+'</div>';
+			
+			var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象  
+  
+			marker.addEventListener("click",function(){
+				var p = marker.getPosition();
+				map.openInfoWindow(infoWindow,p);
+				console.log(p);
+			});
+			$(function(){
+				$("#mapCon").on("click",".btn",function(){
+					console.log($(this).html())
+				});
+			})
+		</script>
 	</body>
 </html>

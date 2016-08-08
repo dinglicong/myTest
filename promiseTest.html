@@ -80,6 +80,7 @@
 			
 			function getName(data){
 				console.log("dataName",data.content.name);
+				alert(data.content.name);
 			}
 			
 			getId().then(getData).then(getName);
@@ -93,6 +94,28 @@
 			beauty.promise().done(function(ele){
 				console.log(ele);
 			});
+			function post(url,fn){
+				return $.ajax({
+					type:"get",
+					url:url,
+					async:true,
+					success:function(data){
+						if(data.status=="OK"){
+							fn(data);
+						}else{
+							alert(data.errorMsg)
+						}
+					}
+				});
+			}
+			$(function(){
+				post("./data/data.json",function(data){
+					console.log(data);
+				}).then(function(data){
+					console.log(data,"then");
+				})
+			})
+	
 		</script>
 	</body>
 </html>

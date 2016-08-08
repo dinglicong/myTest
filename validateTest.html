@@ -8,12 +8,13 @@
 			input{-webkit-border-radius: 4px;border-radius: 4px;padding: 5px;border: 1px solid #CDCDCD;}
 			input.error{border: 1px solid #F50903;}
 			label.error{padding-left: 16px;color: #ea5200;}
+			#submitBtn{display: inline-block;width: 100px;line-height: 24px;text-align: center;}
 		</style>
 		<script src="js/jq.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/jquery.validate.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<body>
-		<form id="validatForm" action="" method="post">
+		<form id="validatForm">
 			<p>
 				<label for="com_name">公司名称</label>
 				<input type="text" name="com_name" id="com_name" value="" />
@@ -46,7 +47,7 @@
 				<label for="job_team">职位人数</label>
 				<input type="text" name="job_team" id="job_team" value="" />
 			</p>
-			<input type="submit" value="提交"/>
+			<div id="submitBtn"  value="">提交</div>
 		</form>
 	</body>
 	<script type="text/javascript">
@@ -75,7 +76,7 @@
 				debug:true
 			})
 			
-			$("#validatForm").validate({
+			var validator = $("#validatForm").validate({
 				rules:{
 					com_name:{
 						required:true,
@@ -128,7 +129,11 @@
 					job_add:{
 						min:"特么谁给你白加班啊"
 					}
+				},
+				submitHandler:function(form){
+					console.log(form)
 				}
+				
 			});
 			$.validator.addMethod("priceMinmum",function(value,element){
 				var price = parseInt(value);
@@ -138,6 +143,11 @@
 					return true;
 				}
 			},"少了5k滚粗");
+			
+			$("#submitBtn").click(function(){
+				console.log(validator);
+				$("#validatForm").valid()
+			})
 		});
 	</script>
 </html>

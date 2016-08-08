@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<!--<style type="text/css">
+			::selection{
+				background: #ff5f3e;
+				color: #FFFFFF;
+			}
+			select::selection{
+				background: #ff5f3e;
+				color: #FFFFFF;
+			}
+		</style>-->
+		<link rel="stylesheet" type="text/css" href="css/chosen.css"/>
+		<script src="js/jq.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/chosen.jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<p>testsetet</p>
+		<select name="" id="test" multiple >
+			<option value="1">test1</option>
+			<option value="2">test2</option>
+			<option value="3">test3</option>
+		</select>
+		<script type="text/javascript">
+			$(function(){
+				$("#test").chosen({
+					allow_single_deselect:true,
+					no_results_text:"没有找到",
+					width:"200px"
+				});
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{margin: 0;padding: 0;}
+			input{-webkit-border-radius: 4px;border-radius: 4px;padding: 5px;border: 1px solid #CDCDCD;}
+			input.error{border: 1px solid #F50903;}
+			label.error{padding-left: 16px;color: #ea5200;}
+		</style>
+		<script src="js/jq.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.validate.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<form id="myform" class="dialog_con" style="width: 500px;height: 200px;">
+			<div class="dialog_line">
+				<label class="input_label">还款金额：</label>
+				<input type="text" class="input_input" name="price" id="price" value="" />
+			</div>
+			
+			<!--<div class="dialog_line">
+				<label class="input_label">还款方式：</label>
+				<input class="input_radio" type="radio" name="payType" id="payType1" value=""/>
+				<label for="payType1" class="input_radio_text">线上</label>
+				<input class="input_radio" type="radio" name="payType" id="payType2" value=""/>
+				<label for="payType2" class="input_radio_text">线下</label>
+			</div>-->
+			<div class="dialog_btn_list">
+				<div class="btn btn_red mr_10 JS_cancel">取消</div>
+				<div class="btn btn_blue JS_comfrim">确定还款</div>
+			</div>
+		</form>
+		<script>
+		    window.onload = function () {
+//		        $("body").append('<form id="myform">'+
+//		'<input type="text" name="name1" id=""><br />'+
+//		'<input type="text" name="name2" id=""><br />'+
+//		'<input type="button" value="提交" id="btn"/>'+
+//		'</form>');
+//		        $('#myform').validate({
+//		        	rules:{
+//		        		name1:{
+//		        			required: true
+//		        		},
+//		        		name2:{
+//		        			required: true
+//		        		}
+//		        	},
+//		        	messages:{
+//		        		name1:"sdf",
+//		        		name2:"sda"
+//		        	},
+//		        	submitHandler:function(form){
+//						console.log(form)
+//					}
+//		        });
+//		        
+//		        
+//		        
+//		        $("button,#btn").click(function () {
+//		        	var form = $("#myform").valid();
+//		            console.log("Valid: " + form);
+//		        });
+
+		    }
+		    $(function(){
+		    	$('#myform').validate({
+					rules:{
+						price:{
+							required: true,
+							number: true
+						}
+					},
+					messages:{
+						price:{
+							required:"test"
+						}
+					},
+					submitHandler:function(form){
+						console.log(form)
+					}
+				});
+				$.validator.addMethod('priceNumber',function(value,element){
+					var price  = parseInt(value);
+					if (price>0) {
+						return true;
+					} else{
+						return false;
+					}
+				},'金额必须大于0');
+				$('.JS_comfrim').on('click',function(){
+					console.log("test");
+					$('#myform').valid();
+				})
+		    })
+		</script>
+</html>

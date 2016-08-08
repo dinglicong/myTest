@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div class="pageCon">
+			
+		</div>
+		<script src="js/jq.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/page.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+		function renderPage(totalPage,currentPage,totalNumber){
+			PAGE({totalPage: totalPage,//总页数
+			            currentPage: currentPage,//当前页
+			            showNum: 5,//显示页数
+			            $dom: $(".pageCon"),
+			            totalNumber: totalNumber,//总页数
+			            callback: function(page){
+			            	console.log(page);
+			            },
+			            isJudge: false,//是否默认判断
+			            isPageTips: true,//是否页数提示
+			            isPageGo: true});
+		}
+		
+		
+		
+		
+			$(function(){
+//				var page = new PAGE();
+			renderPage(10,1,100);
+			
+			setTimeout(function(){
+				renderPage(2,1,20);
+			},3000)
+			
+			
+			
+			
+			
+			})
+		</script>
+	</body>
+</html>

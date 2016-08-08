@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jq.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<script type="text/javascript">
+			$(function(){
+				var num = 13156999;
+					_arry = num.toString().split(""),
+					_str = "";
+				
+				for (var i = 0,nl = _arry.length;i<nl;) {
+					var _x = _arry[nl-1]?_arry[nl-1]:"",
+						_y = _arry[nl-2]?_arry[nl-2]:"",
+						_z = _arry[nl-3]?_arry[nl-3]:"";
+					_str =  _z + _y + _x + "," + _str;
+					
+					console.log(_str);
+					nl = nl - 3;
+				}
+					
+				console.log(_str);
+				//去掉最后一个逗号
+				_str.substring(0,_str.split("").length-1);
+				console.log(_str);
+				
+				
+				
+			});
+			function test(str,n){
+					if(str>=0 && typeof str === 'number'){
+						n = n > 0 && n <= 20 ? n : 2;   
+						str = parseFloat(str).toFixed(n).toString(); 
+						
+						
+						var l = str.split(".")[0].split("").reverse(),//小数点左边的部分
+							r = str.split(".")[1],//小数点右边的部分
+							t = "";
+						
+						for(i = 0; i < l.length; i ++ ) {   
+							t += l[i] + ((i + 1) % 3 == 0 && (i + 1) != l.length ? "," : "");   
+						}   
+						return t.split("").reverse().join("") + "." + r; 
+					}
+					
+					return '';
+				};
+				function floatSub(arg1,arg2) {
+					var r1,r2,m,n;
+					try{r1=arg1.toString().split(".")[1].length}catch(e){r1=0}
+					try{r2=arg2.toString().split(".")[1].length}catch(e){r2=0}
+					m=Math.pow(10,Math.max(r1,r2));
+					//动态控制精度长度
+					n=(r1>=r2)?r1:r2;
+					return Number(((arg1*m-arg2*m)/m).toFixed(n));
+				}
+				var str = floatSub(320,0);
+				console.log(test(str));
+				console.log(test(''))
+		</script>
+	</body>
+</html>
