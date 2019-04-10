@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jq.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var applyTest = {
+				init: function() {
+					var self = this;
+					
+					/*
+					 * apply、call和bind都会改变方法的this指向，
+					 * 不同的是apply, call会立即执行，而bind不会
+					 */
+//					self.getData()
+//						.then(self.renderData.apply(self, data));
+					self.getData()
+						.then(self.renderData.bind(self));
+				},
+				getData: function() {
+					var self = this;
+					
+					return $.ajax({
+						type:"get",
+						url:"./data/data.json",
+						async:true,
+						success: function(data) {
+							if(data.status != 'OK') {
+								alert(data.errorMsg);
+								throw data.errorMsg;
+							}
+							console.log('ajax success');
+						}
+					});
+				},
+				renderData: function(data) {
+					var self = this;
+					
+					console.log(this);
+					self.consoleData(data);
+				},
+				consoleData: function(data) {
+					var data = data || '';
+					console.log(data);
+				}
+			}
+			
+			applyTest.init();
+		</script>
+	</body>
+</html>

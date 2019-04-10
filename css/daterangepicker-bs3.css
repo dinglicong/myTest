@@ -94,7 +94,7 @@
 
 /*.daterangepicker.opensright .ranges, .daterangepicker.opensright .calendar {*/
 .daterangepicker.opensright .calendar {
-  float: right;
+  float: left;
   margin: 4px;
 }
 
@@ -168,8 +168,6 @@
   color: #FFFFFF;
   display: block;
   font-size: 11px;
-  height: 34px;
-  line-height: 34px;
   vertical-align: middle;
   margin: 0 0 10px 0;
   padding: 0 6px;
@@ -282,9 +280,6 @@
   text-align: center;
   width: 20px;
   height: 20px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
   cursor: pointer;
   white-space: nowrap;
 }
@@ -308,11 +303,30 @@
   -moz-border-radius: 0;
   border-radius: 0;
 }
-
 .daterangepicker td.active, .daterangepicker td.active:hover {
   background-color: #fac138;
   border-color: transparent;
   color: #000;
+}
+.daterangepicker td.start-date {
+  background: rgba(250,193,56);
+  color: #000;
+  -webkit-border-top-left-radius: 4px;
+  -webkit-border-bottom-left-radius: 4px;
+  -moz-border-radius-bottomleft: 4px;
+  -moz-border-radius-topleft: 4px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+.daterangepicker td.end-date {
+  background: rgba(250,193,56);
+  color: #000;
+  -webkit-border-top-right-radius: 4px;
+  -webkit-border-bottom-right-radius: 4px;
+  -moz-border-radius-bottomright: 4px;
+  -moz-border-radius-topright: 4px;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
 }
 
 .daterangepicker td.week, .daterangepicker th.week {
@@ -329,12 +343,38 @@
 }
 
 .daterangepicker select.monthselect {
-  margin-right: 2%;
-  width: 56%;
+     margin-right: 2%;
+    width: 56%;
+    font-size: 12px;
+    padding: 1px;
+    height: auto;
+    cursor: default;
+    border: 1px solid #43506f;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    background: #030C1B url(./../../images/icon_arrow.png) 0 0 no-repeat;
+    background-position: 90%;
 }
 
 .daterangepicker select.yearselect {
   width: 40%;
+  font-size: 12px;
+    padding: 1px;
+    height: auto;
+    cursor: default;
+    border: 1px solid #43506f;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    background: #030C1B url(./../../images/icon_arrow.png) 0 0 no-repeat;
+    background-position: 90%;
 }
 
 .daterangepicker select.hourselect, .daterangepicker select.minuteselect, .daterangepicker select.ampmselect {

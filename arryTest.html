@@ -6,37 +6,92 @@
 		<script src="js/jq.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<body>
-		<input type="text" name="username" id="username" value="" />
+		<!--<input type="text" name="username" id="username" value="" />
 		<input type="text" name="sex" id="sex" value="" />
-		<input type="text" name="age" id="age" value="" />
+		<input type="text" name="age" id="age" value="" />-->
 		<script type="text/javascript">
-			var arrList = [{name:"1",age:23},{name:"2",age:26},{name:"3",age:24}];
-			/*
-			 * reduce&reduceRight都会选代数组所有项，然后构建一个最终返回的值
-			 * 此方法将会有极大的用处,对数组筛选
-			 */
-			var res = arrList.reduce(function(prev,cur,index,arry){
-				return prev.age<cur.age?cur:prev;
-			});
-			console.log(res);
-			/*
-			 * some对数组的每个元素都进行函数运行，对任一项返回为true,则返回为true,
-			 * 
-			 */
-			var isOder = arrList.some(function(item){
-				return item.age>27;
-			});
-			console.log(isOder);
-			/*
-			 * map对数组的每个元素都进行函数运行，返回每次函数调用的结果组成的数组
-			 */
-			var resArr = arrList.map(function(item){
-				if(item.age>25){
-					item.des = "晚婚";
+			var str = '[{"id":1,"balanceDirectionDesc":"借","level":1,"name":"银行存款-擦","childList":[{"id":2,"balanceDirectionDesc":"借","level":2,"name":"银行存款-通联网银渠道 ","childList":[{"id":3,"balanceDirectionDesc":"借","level":3,"name":"银行存款-通联网银渠道","balanceDirection":1,"code":"1001001001","typeDesc":"资产类","type":1},{"id":57,"balanceDirectionDesc":"借","level":3,"name":"银行存款-通联网银渠道-2","balanceDirection":1,"code":"1001001009","typeDesc":"资产类","type":1}],"balanceDirection":1,"code":"1001001","typeDesc":"资产类","type":1},{"id":7,"balanceDirectionDesc":"双向","level":2,"name":"科目名称1001002","balanceDirection":0,"code":"1001002","typeDesc":"资产类","type":1},{"id":30,"balanceDirectionDesc":"借","level":2,"name":"前端测试二级","balanceDirection":1,"code":"1001100","typeDesc":"资产类","type":1}],"balanceDirection":1,"code":"1001","typeDesc":"资产类","type":1},{"id":4,"balanceDirectionDesc":"贷","level":1,"name":"客户资金","childList":[{"id":5,"balanceDirectionDesc":"贷","level":2,"name":"客户资金-商户","childList":[{"id":6,"balanceDirectionDesc":"贷","level":3,"name":"客户资金-商户-基本户","balanceDirection":2,"code":"2001001001","typeDesc":"负债类","type":2}],"balanceDirection":2,"code":"2001001","typeDesc":"负债类","type":2}],"balanceDirection":2,"code":"2001","typeDesc":"负债类","type":2},{"id":9,"balanceDirectionDesc":"双向","level":1,"name":"呵呵","balanceDirection":3,"code":"1005","typeDesc":"负债类","type":2},{"id":10,"balanceDirectionDesc":"双向","level":1,"name":"1","balanceDirection":3,"code":"121111","typeDesc":"所有者权益","type":3},{"id":13,"balanceDirectionDesc":"借","level":1,"name":"1231231","balanceDirection":1,"code":"888888","typeDesc":"资产类","type":1},{"id":14,"balanceDirectionDesc":"借","level":1,"name":"钱包充值","balanceDirection":1,"code":"1028","typeDesc":"负债类","type":2},{"id":15,"balanceDirectionDesc":"贷","level":1,"name":"2","balanceDirection":2,"code":"11111","typeDesc":"负债类","type":2},{"id":20,"balanceDirectionDesc":"双向","level":1,"name":"为其","balanceDirection":0,"code":"1234","typeDesc":"负债类","type":2},{"id":21,"balanceDirectionDesc":"贷","level":1,"name":"损益类-1","childList":[{"id":22,"balanceDirectionDesc":"贷","level":2,"name":"损益类-1-2","childList":[{"id":23,"balanceDirectionDesc":"贷","level":3,"name":"损益类-1-2-3","balanceDirection":2,"code":"5001002003","typeDesc":"损益类","type":5}],"balanceDirection":2,"code":"5001002","typeDesc":"损益类","type":5},{"id":25,"balanceDirectionDesc":"贷","level":2,"name":"前端再次测试","balanceDirection":2,"code":"50015001010","typeDesc":"损益类","type":5}],"balanceDirection":2,"code":"5001","typeDesc":"损益类","type":5},{"id":26,"balanceDirectionDesc":"双向","level":1,"name":"共同-1","childList":[{"id":34,"balanceDirectionDesc":"双向","level":2,"name":"共同-1","childList":[{"id":35,"balanceDirectionDesc":"双向","level":3,"name":"共同-1-2-3","balanceDirection":0,"code":"3001003001","typeDesc":"共同类","type":4}],"balanceDirection":0,"code":"3001003","typeDesc":"共同类","type":4}],"balanceDirection":0,"code":"3001","typeDesc":"共同类","type":4},{"id":36,"balanceDirectionDesc":"贷","level":1,"name":"守卫者","childList":[{"id":37,"balanceDirectionDesc":"贷","level":2,"name":"守卫者-2","childList":[{"id":38,"balanceDirectionDesc":"贷","level":3,"name":"守卫者-2-4","balanceDirection":2,"code":"5201201102","typeDesc":"所有者权益","type":3},{"id":39,"balanceDirectionDesc":"贷","level":3,"name":"守卫者-212","balanceDirection":2,"code":"5201201123","typeDesc":"所有者权益","type":3}],"balanceDirection":2,"code":"5201201","typeDesc":"所有者权益","type":3},{"id":40,"balanceDirectionDesc":"贷","level":2,"name":"守卫者-3","childList":[{"id":41,"balanceDirectionDesc":"贷","level":3,"name":"守卫者-3-87","balanceDirection":2,"code":"5201213548","typeDesc":"所有者权益","type":3}],"balanceDirection":2,"code":"5201213","typeDesc":"所有者权益","type":3}],"balanceDirection":2,"code":"5201","typeDesc":"所有者权益","type":3},{"id":42,"balanceDirectionDesc":"借","level":1,"name":"12341","balanceDirection":1,"code":"1433","typeDesc":"负债类","type":2},{"id":43,"balanceDirectionDesc":"借","level":1,"name":"12412421","balanceDirection":1,"code":"6443","typeDesc":"所有者权益","type":3},{"id":44,"balanceDirectionDesc":"贷","level":1,"name":"123","balanceDirection":2,"code":"7845","typeDesc":"共同类","type":4},{"id":45,"balanceDirectionDesc":"借","level":1,"name":"1234","balanceDirection":1,"code":"1223","typeDesc":"共同类","type":4},{"id":46,"balanceDirectionDesc":"借","level":1,"name":"3123","balanceDirection":1,"code":"8642","typeDesc":"共同类","type":4},{"id":47,"balanceDirectionDesc":"贷","level":1,"name":"白条还款","childList":[{"id":48,"balanceDirectionDesc":"贷","level":2,"name":"白条还款-资管","childList":[{"id":49,"balanceDirectionDesc":"贷","level":3,"name":"白条还款-资管-应还本金","balanceDirection":2,"code":"7001001001","typeDesc":"负债类","type":2},{"id":50,"balanceDirectionDesc":"贷","level":3,"name":"白条还款-资管-应还利息","balanceDirection":2,"code":"7001001002","typeDesc":"负债类","type":2},{"id":51,"balanceDirectionDesc":"贷","level":3,"name":"白条还款-资管-应还罚息","balanceDirection":2,"code":"7001001003","typeDesc":"负债类","type":2}],"balanceDirection":2,"code":"7001001","typeDesc":"负债类","type":2}],"balanceDirection":2,"code":"7001","typeDesc":"负债类","type":2},{"id":52,"balanceDirectionDesc":"贷","level":1,"name":"资管-小贷","childList":[{"id":53,"balanceDirectionDesc":"贷","level":2,"name":"资管-小贷-还款","childList":[{"id":54,"balanceDirectionDesc":"贷","level":3,"name":"资管-小贷-还款-应还银行本金","balanceDirection":2,"code":"8001001001","typeDesc":"资产类","type":1},{"id":55,"balanceDirectionDesc":"贷","level":3,"name":"资管-小贷-还款-实收利息","balanceDirection":2,"code":"8001001002","typeDesc":"资产类","type":1},{"id":56,"balanceDirectionDesc":"贷","level":3,"name":"资管-小贷-还款-实收罚息","balanceDirection":2,"code":"8001001003","typeDesc":"资产类","type":1}],"balanceDirection":2,"code":"8001001","typeDesc":"资产类","type":1}],"balanceDirection":2,"code":"8001","typeDesc":"资产类","type":1}]';
+			var arr = JSON.parse(str);
+			var o = [];
+			
+			console.log(arr);
+			
+			function arrParse(arr, index, pre) {
+				var object = {}
+				var pre = pre || '';
+				
+				
+				if(pre) {
+					pre = $.extend(object, pre);
 				}
-				return item
-			});
-			console.log(resArr)
+				
+				index ++;
+				if(arr.length) {
+					for(var i = 0, al = arr.length; i < al; i++) {
+						var item = arr[i];
+						
+						
+						object['name'+index] = item.name;
+						object['code'+index] = item.code;
+						if(item.childList&&item.childList.length) {
+							arrParse(item.childList, index, object);
+						}
+					}
+					o.push(object);
+				}
+				
+			};
+			
+			arrParse(arr, 0);
+			
+			console.log(o);
+//			var arrList = [{name:"1",age:23},{name:"2",age:26},{name:"3",age:24}];
+//			/*
+//			 * reduce&reduceRight都会选代数组所有项，然后构建一个最终返回的值
+//			 * 此方法将会有极大的用处,对数组筛选
+//			 */
+//			var res = arrList.reduce(function(prev,cur,index,arry){
+//				return prev.age<cur.age?cur:prev;
+//			});
+//			console.log(res);
+//			/*
+//			 * some对数组的每个元素都进行函数运行，对任一项返回为true,则返回为true,
+//			 * 
+//			 */
+//			var isOder = arrList.some(function(item){
+//				return item.age>27;
+//			});
+//			console.log(isOder);
+//			/*
+//			 * map对数组的每个元素都进行函数运行，返回每次函数调用的结果组成的数组
+//			 */
+//			var resArr = arrList.map(function(item){
+//				if(item.age>25){
+//					item.des = "晚婚";
+//				}
+//				return item
+//			});
+//			console.log(resArr)
+
+
+//		var arr = [1,2,3,4,5,7,4,9,2,6];
+//		function getRandomSort(arr) {
+//			var self = this;
+//			var _arr = [];
+//			
+//			for(var i = 0, al = arr.length; i < al; i++) {
+//				var index = parseInt(Math.random() * al);
+//				var item = arr.splice(index, 1)[0];
+//				
+//				arr.push(item);
+//			}
+//			
+//			
+//			return arr;
+//		}
+//		
+//		
+//		console.log(arr, getRandomSort(arr));
 		</script>
 	</body>
 </html>

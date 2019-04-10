@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			html,body{margin: 0;padding: 0;}
+			html,body,#mapCon{width: 100%;height: 100%;}
+			.login-con{z-index:2000; position: absolute; top: 20px;border: 1px solid #CDCDCD;width: 220px; height: 50px;background: #FFFFFF;}
+			.input-con{position: absolute;top: 20px;left: 20px;z-index: 2;}
+		</style>
+		<script src="js/jq.js" type="text/javascript" charset="utf-8"></script>
+		<!--<script src="http://api.map.baidu.com/api?v2.0&ak=EzWsBs55tp2sh3ZVwjUNlLE7" type="text/javascript" charset="utf-8"></script>-->
+		<script src="https://api.map.baidu.com/api?v=2.0&&ak=EzWsBs55tp2sh3ZVwjUNlLE7&s=1" type="text/javascript" charset="utf-8"></script>
+		<!--<script src="http://lbsyun.baidu.com/jsdemo/data/points-sample-data.js" type="text/javascript" charset="utf-8"></script>-->
+		<!--<script type="text/javascript" src="http://api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js"></script>-->
+		<!--<script src="http://api.map.baidu.com/library/SearchInRectangle/1.2/src/SearchInRectangle_min.js" type="text/javascript" charset="utf-8"></script>-->
+		<script src="js/searchInRectangle.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="mapCon">
+			
+		</div>
+		<div class="input-con" >
+			<input type="text" name="js_lng" id="js_lng" value="" />
+		</div>
+		<script type="text/javascript">
+			var map = new BMap.Map("mapCon");
+        map.centerAndZoom(new BMap.Point(116.404, 39.915), 12); 
+        var keyword = "" ;
+        var pullBox = new BMapLib.SearchInRectangle(map, {
+            renderOptions:{
+                map: map,
+                strokeWeight: 2,
+                strokeColor: "#DFD3AC",
+                opacity: 0.3,                
+                followText: "拖拽鼠标搜索"+ keyword +"",
+                autoClose: false,
+                autoViewport: false,
+                panel: "result",
+                selectFirstResult: false,
+                ShowPointLocalContorlName: 'js_lng',
+                onSearchComplete: function(e) {
+                	console.log(this, e);
+                },
+                callback: function(southEastPoint, northWestPoint){
+                	console.log(southEastPoint, northWestPoint)
+                }
+            }
+        }); 
+        pullBox.setFillColor("black");
+        pullBox.setLineStyle("dashed");
+        pullBox.open();
+		</script>
+	</body>
+</html>

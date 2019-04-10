@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>设置点标注的文本标签</title>
+    <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css"/>
+    <style>
+        html, body, #container {
+            height: 100%;
+            width: 100%;
+        }
+
+        .info{
+            background: rgba(61,126,252, 0.8);
+            padding: 5px;
+            border-radius: 2px;
+            color: #FFFFFF;
+            font-size: 14px;
+            display: inline-block;
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+<div id="container"></div>
+<script type="text/javascript"
+        src="https://webapi.amap.com/maps?v=1.4.13&key=2a0765d1a4d4a0dab87ec19b9af69bd9"></script>
+<script type="text/javascript">
+    var map = new AMap.Map('container', {
+    	mapStyle: 'amap://styles/1ec4d4fbb834e5f63aba14310d7c933f',
+        resizeEnable: true,
+        zoom: 13
+    });
+
+    var marker = new AMap.Text({
+    	map: map,
+		text:'TOP1',
+        anchor:'center', // 设置文本标记锚点
+        style:{
+            'background': 'rgba(61,126,252, 0.8)',
+            'padding': '1px 2px',
+            'border-radius': '2px',
+            'color': '#FFFFFF',
+            'font-size': '14px',
+            'display': 'inline-block',
+            'border-width': 0,
+        },
+        offset: new AMap.Pixel(-18, -23),
+        zIndex: 200
+    });
+    
+//  setTimeout(function() {
+//  	map.remove(marker)
+//  }, 2000)
+    
+</script>
+</body>
+</html>

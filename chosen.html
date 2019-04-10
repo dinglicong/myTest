@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{margin: 0;padding: 0;}
+			html{font-size: 10px;}
+			html,body{width: 100%;height: 100%;}
+			body{background: #00877B}
+			
+			#testChosen{
+				margin: 100px auto 0;
+				display: block;
+			}
+		</style>
+		<link rel="stylesheet" type="text/css" href="css/chosen.css"/>
+		<script src="js/jq.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/chosen_orign.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<!--<div class="testChosen" id="testChosen" style="background-color: #008000; width: 100px;height: 100px;">
+			
+		</div>-->
+		<select name="" id="testChosen">
+			<option value="">123</option>
+			<option value="">123</option>
+			<option value="">123</option>
+			<option value="">123</option>
+			
+		</select>
+		<script type="text/javascript">
+			$(function(){
+				$('#testChosen').chosen({width: '180px', disable_search: true});
+			})
+		</script>
+	</body>
+</html>

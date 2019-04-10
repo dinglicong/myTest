@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+	    <style type="text/css">
+	      body,html,#container{
+	        width: 100%;
+	        height: 100%;
+	        margin: 0px
+	      }
+	    </style>
+	</head>
+	<body>
+		 <div id="container" tabindex="0"></div>
+	    <script src="https://webapi.amap.com/maps?v=1.4.10&key=2a0765d1a4d4a0dab87ec19b9af69bd9&plugin=AMap.GraspRoad"></script>
+	    <!--<script type="text/javascript">
+	        var map = new AMap.Map('container', {
+	           resizeEnable: true,
+	           center:[116.480983, 39.989628],
+	           zoom:11
+	        });
+	        AMap.plugin('AMap.ToolBar',function(){
+	           var toolbar = new AMap.ToolBar();
+	           map.addControl(toolbar)
+	        })
+	    </script>
+	    <script type="text/javascript" src="https://webapi.amap.com/demos/js/liteToolbar.js"></script>-->
+        <script type="text/javascript">
+        var map = new AMap.Map('container', {
+              resizeEnable: true
+        });
+        var graspRoad;
+        var pathParam = [
+//      {"x":116.478928,"y":39.997761,"sp":19,"ag":0, "tm":1},
+//      {"x":116.478907,"y":39.998422,"sp":10,"ag":0, "tm":2},
+//      {"x":116.479384,"y":39.998546,"sp":10,"ag":110,"tm":3},
+//      {"x":116.481053,"y":39.998204,"sp":10,"ag":120,"tm":4},
+//      {"x":116.481793,"y":39.997868,"sp":10,"ag":120,"tm":5},
+//      {"x":116.482898,"y":39.998217,"sp":10,"ag":30, "tm":6},
+//      {"x":116.483789,"y":39.999063,"sp":10,"ag":30, "tm":7},
+//      {"x":116.484674,"y":39.999844,"sp":10,"ag":30, "tm":8},
+			/*
+			 * x,y 经纬度，必填字段
+			 * sp速度，必填字段，可为0
+			 * ag角度, 必填字段，可为0，与正北方向的顺时针夹角，[ 0, 360 ]
+			 * tm时间, 必填字段，不可为0, 必须按照顺序填，如果全微同一数字，无法准确轨迹回放
+			 * 轨迹点采集的时间，以s为单位
+			 * OriginPath数组第一个元素的tm值为从1970年开始的unix的时间戳，精确到秒
+			 * 其余元素的tm值为当前采集点的时间减去第一个元素的采集时间的差值
+			 */
+        
+        {"x":116.478928,"y":39.997761,"sp":0,"ag":0, "tm":1},
+        {"x":116.478907,"y":39.998422,"sp":0,"ag":0, "tm":2},
+        {"x":116.479384,"y":39.998546,"sp":0,"ag":0, "tm":3},
+        {"x":116.481053,"y":39.998204,"sp":0,"ag":0, "tm":4},
+        {"x":116.481793,"y":39.997868,"sp":0,"ag":0, "tm":5},
+        {"x":116.482898,"y":39.998217,"sp":0,"ag":0, "tm":6},
+        {"x":116.483789,"y":39.999063,"sp":0,"ag":0, "tm":7},
+        {"x":116.484674,"y":39.999844,"sp":0,"ag":0, "tm":8}
+        ]
+
+//      var path1 = [];
+//      for(var i=0;i<pathParam.length;i+=1){
+//        path1.push([pathParam[i].x,pathParam[i].y])
+//      }
+//      var oldLine = new AMap.Polyline({
+//        path:path1,
+//        strokeWeight:8,
+//        strokeOpacity:1,
+//        strokeColor:'red'
+//      })
+//      map.add(oldLine)
+        if(!graspRoad) {
+            graspRoad = new AMap.GraspRoad()
+        }
+        /*
+         * 轨迹纠偏
+         * driving(path:OriginPath,GraspRoadCallback:function(err:Object,result:GraspedPath))
+         * 用于驾车轨迹的纠偏。
+         * path为原始轨迹点的数组，不得超过 500点。
+         * GraspRoadCallback为回调函数,result为回调的纠正后的轨迹点数据
+         */
+        
+        graspRoad.driving(pathParam,function(error,result){
+          if(!error){
+            var path2 = [];
+            var newPath = result.data.points;
+            for(var i =0;i<newPath.length;i+=1){
+              path2.push([newPath[i].x,newPath[i].y])
+            }
+            var newLine = new AMap.Polyline({
+              path:path2,
+              strokeWeight:8,
+              strokeOpacity:0.8,
+              strokeColor:'#0091ea',
+              showDir:true
+            })
+            map.add(newLine)
+            // 自动跳转到合适的尺寸
+            map.setFitView()
+          } else {
+          	console.log(error);
+          }
+        })
+    </script>
+	</body>
+</html>

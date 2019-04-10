@@ -19,11 +19,20 @@
 	</head>
 	<body>
 		<p>testsetet</p>
+		<select name="11" multiple="multiple">
+			<option value="1" selected="selected">asdf</option>
+			<option value="1d" selected="selected">asdfd</option>
+			<option value="1a">asdfa</option>
+			<option value="1c">asdfc</option>
+			<option value="1f">asdff</option>
+			
+		</select>
 		<select name="" id="test" multiple >
 			<option value="1">test1</option>
 			<option value="2">test2</option>
 			<option value="3">test3</option>
 		</select>
+		<textarea name="" id="js_select_area" rows="10" cols="50"></textarea>
 		<script type="text/javascript">
 			$(function(){
 				$("#test").chosen({
@@ -31,6 +40,13 @@
 					no_results_text:"没有找到",
 					width:"200px"
 				});
+				$('#js_select_area').on('select', function() {
+				    var $this = $(this);
+				    var str = $this.val();
+				    var start = $this.get(0).selectionStart, end = $this.get(0).selectionEnd;
+				    var word = str.substring(start, end);
+				    console.log(word);
+				})
 			})
 		</script>
 	</body>

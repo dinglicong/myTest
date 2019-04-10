@@ -3,12 +3,62 @@
 	<head>
 		<meta charset="utf-8">
 		<title></title>
+		<script src="js/jq.js" type="text/javascript" charset="utf-8"></script>
 		<style type="text/css">
-			.a{ width:200px; height:400px;} 
-.b{ padding:20%; background-color:red; } 
+			.a{ width:100px; height:100px;background: #00877B;margin: 10px;} 
+			.b{overflow: hidden;} 
 		</style>
 	</head>
 	<body>
-	<div class="a"><div class="b"></div></div>
+	<div class="a"></div>
+	<div class="b">
+		<div class="a"></div>
+	</div>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(document).off()
+			.on('keyup', function(e) {
+				console.log(e.keyCode, e.keyCode == 81);
+				
+				switch (e.keyCode){
+					//按键q同 CS中Q，强制切换
+					case 81:
+						console.log(e.keyCode);
+						break;
+					//e关闭循环播放，因为我要69嘿嘿
+					case 69:
+						console.log(e.keyCode,'循环播放已关闭');
+						break;
+					//r开启循环播放，我不循环播放只是因为换了个弹匣
+					case 82:
+						console.log(e.keyCode,'循环播放已开启');
+						break;
+				}
+			})
+		});
+//		var name = 'HELLO';
+//		var object = {
+//			name: 'hello',
+//			getName: function() {
+//				console.log(this.name);
+//				setTimeout(function() {
+//					console.log(this.name, this);
+//				});
+//				
+//				return function() {
+//					console.log(this.name);
+//				}
+//			}
+//		}
+////		object.getName();
+//		console.log(object.getName()());
+//		console.log(h());
+//		var h = function()	{
+//			str = 'good';
+//			var str;
+//			console.log(str);
+//		}
+//		console.log(str);
+//	</script>
 	</body>
 </html>

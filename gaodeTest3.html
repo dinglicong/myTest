@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+        <style>
+        body,html,#container{
+	        width: 100%;
+	        height: 100%;
+	        margin: 0px;
+    	}
+
+        .amap-icon img,
+        .amap-marker-content img{
+            width: 25px;
+            height: 34px;
+        }
+
+        .marker {
+            position: absolute;
+            top: -20px;
+            right: -118px;
+            color: #fff;
+            padding: 4px 10px;
+            box-shadow: 1px 1px 1px rgba(10, 10, 10, .2);
+            white-space: nowrap;
+            font-size: 12px;
+            font-family: "";
+            background-color: #25A5F7;
+            border-radius: 3px;
+        }
+
+        .input-card{
+            width: 32rem;
+            z-index: 170;
+        }
+
+        .input-card .btn{
+            margin-right: .8rem;
+        }
+
+        .input-card .btn:last-child{
+            margin-right: 0;
+        }
+    </style>
+	</head>
+	<body>
+		<div id="container" tabindex="0"></div>
+		<div class="input-card">
+		    <label style="color:grey">点标记操作</label>
+		    <div class="input-item">
+		        <input id="addMarker" type="button" class="btn" onclick="addMarker()" value="添加点标记覆盖物">
+		        <input id="updateMarker" type="button" class="btn" onclick="updateMarker()" value="更新点标记覆盖物">
+		        <input id="clearMarker" type="button" class="btn" onclick="clearMarker()" value="删除点标记覆盖物">
+		    </div>
+		</div>
+	    <script src="https://webapi.amap.com/maps?v=1.4.10&key=2a0765d1a4d4a0dab87ec19b9af69bd9"></script>
+		<script type="text/javascript">
+			var marker, map = new AMap.Map("container", {
+		        resizeEnable: true,
+		        center: [116.397428, 39.90923],
+		        zoom: 13
+		    });
+		
+		    // 实例化点标记
+		    function addMarker() {
+		        marker = new AMap.Marker({
+//		            icon: "//a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-default.png",
+					content: '<span>123</span>',
+		            position: [116.406315,39.908775],
+		            offset: new AMap.Pixel(-13, -30)
+		        });
+		        marker.setMap(map);
+		      //鼠标点击marker弹出自定义的信息窗体
+//			    AMap.event.addListener(marker, 'click', function () {
+//			        infoWindow.open(map, marker.getPosition());
+//			    });
+		    }
+		  //构建信息窗体中显示的内容
+	        var info = [];
+	        info.push("<div style=\"padding:7px 0px 0px 0px;\"><h4>高德软件</h4>");
+	        info.push("<p class='input-item'>电话 : 010-84107000   邮编 : 100102</p>");
+	        info.push("<p class='input-item'>地址 :北京市朝阳区望京阜荣街10号首开广场4层</p></div></div>");
+			var infoWindow = new AMap.InfoWindow({
+			    content: info.join(""),
+			});
+		
+		    function updateMarker() {
+		
+		        if (!marker) {
+		            return;
+		        }
+		
+		        // 自定义点标记内容
+		        var markerContent = document.createElement("div");
+		
+		        // 点标记中的图标
+		        var markerImg = document.createElement("img");
+		        markerImg.className = "markerlnglat";
+		        markerImg.src = "//a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-red.png";
+		        markerContent.appendChild(markerImg);
+		
+		        // 点标记中的文本
+		        var markerSpan = document.createElement("span");
+		        markerSpan.className = 'marker';
+		        markerSpan.innerHTML = "Hi，我被更新啦！";
+		        markerContent.appendChild(markerSpan);
+		
+		        marker.setContent(markerContent); //更新点标记内容
+		        marker.setPosition([116.391467, 39.927761]); //更新点标记位置
+		    }
+		
+		    // 清除 marker
+		    function clearMarker() {
+		
+		        if (marker) {
+		            marker.setMap(null);
+		            marker = null;
+		        }
+		    }
+		</script>
+	</body>
+</html>

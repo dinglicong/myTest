@@ -1,0 +1,385 @@
+<!-- 重点参数：renderOptions -->
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- 原始地址：//webapi.amap.com/ui/1.0/ui/misc/PathSimplifier/examples/index.html -->
+    <!--<base href="//webapi.amap.com/ui/1.0/ui/misc/PathSimplifier/examples/" />-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>轨迹展示&巡航</title>
+    <style>
+    html,
+    body,
+    #container {
+        width: 100%;
+        height: 100%;
+        margin: 0px;
+    }
+    
+    #loadingTip {
+        position: absolute;
+        z-index: 9999;
+        top: 0;
+        left: 0;
+        padding: 3px 10px;
+        background: red;
+        color: #fff;
+        font-size: 14px;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="container"></div>
+    <script src="./data/maptester.js" type="text/javascript" charset="utf-8"></script>
+    <!--<script src="./data/maptesterHot.js" type="text/javascript" charset="utf-8"></script>-->
+    <script src="data/mapHot.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src='http://webapi.amap.com/maps?v=1.4.11&key=2a0765d1a4d4a0dab87ec19b9af69bd9&plugin=AMap.GraspRoad,AMap.ToolBar,AMap.Scale'></script>
+    <!--<script src="https://webapi.amap.com/maps?v=1.4.10&key=4e4034d6a7bd2482259bd3656c877ffe&plugin=AMap.GraspRoad,AMap.ToolBar,AMap.Scale" type="text/javascript" charset="utf-8"></script>-->
+    <!-- UI组件库 1.0 -->
+    <script src="http://webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
+    <script type="text/javascript">
+    var pointData = mapPointData;
+    //创建地图
+    var map = new AMap.Map('container', {
+//  	mapStyle: 'amap://styles/1ec4d4fbb834e5f63aba14310d7c933f',
+        zoom: 4
+    });
+    
+//   map.plugin(["AMap.Heatmap"], function () {
+//      //初始化heatmap对象
+//      heatmap = new AMap.Heatmap(map, {
+//          radius: 2, //给定半径
+//          opacity: [0, 1]
+//          /*,
+//          gradient:{
+//              0.5: 'blue',
+//              0.65: 'rgb(117,211,248)',
+//              0.7: 'rgb(0, 255, 0)',
+//              0.9: '#ffea00',
+//              1.0: 'red'
+//          }
+//           */
+//      });
+//      //设置数据集：该数据为北京部分“公园”数据
+//      heatmap.setDataSet({
+//          data: mapHot,
+//          max: 100
+//      });
+//  });
+//
+    AMapUI.load(['ui/misc/PathSimplifier', 'lib/$'], function(PathSimplifier, $) {
+
+        if (!PathSimplifier.supportCanvas) {
+            alert('当前环境不支持 Canvas！');
+            return;
+        }
+
+        //just some colors
+        var colors = [
+            "#3366cc", "#dc3912", "#ff9900", "#109618", "#990099", "#0099c6", "#dd4477", "#66aa00",
+            "#b82e2e", "#316395", "#994499", "#22aa99", "#aaaa11", "#6633cc", "#e67300", "#8b0707",
+            "#651067", "#329262", "#5574a6", "#3b3eac"
+        ];
+
+        var pathSimplifierIns = new PathSimplifier({
+            zIndex: 100,
+            //autoSetFitView:false,
+            map: map, //所属的地图实例
+
+            getPath: function(pathData, pathIndex) {
+
+                return pathData.path;
+            },
+            getHoverTitle: function(pathData, pathIndex, pointIndex) {
+            	return '';
+
+                if (pointIndex >= 0) {
+                    //point 
+                    return pathData.name + '，点：' + pointIndex + '/' + pathData.path.length;
+                }
+
+                return pathData.name + '，点数量' + pathData.path.length;
+            },
+            renderOptions: {
+                pathLineStyle: {
+                	/*
+                	 * {
+						   strokeStyle: {string} 线颜色，比如 red, rgb(255,0,0), rgba(0,0,0,1)等
+						   lineWidth:  {number}   线宽度
+						   borderStyle: {string}  描边颜色
+						   borderWidth: {number}  描边宽度
+						   dirArrowStyle：{Object|boolean}
+						        方向箭头样式，lineWidth>=4 时有效
+						    Object类型的取值见下方dirArrowStyle，为true时直接使用默认配置
+						}
+                	 */
+                    dirArrowStyle: true
+                },
+                // 根据轨迹索引和zoom返回样式配置
+                /*
+                 * @param  {pathIndex:number, pathData:* }  pathInfo 轨迹信息，包括轨迹索引和轨迹数据
+					@param  {number} zoom 地图当前的zoom级别
+					@return {Object} 样式配置
+                 */
+                getPathStyle: function(pathItem, zoom) {
+
+                    var color = colors[pathItem.pathIndex % colors.length],
+                        lineWidth = Math.round(4 * Math.pow(1.1, zoom - 3));
+						
+						/*返回的样式对象的属性范围包括
+						 * pathLineStyle， pathLineHoverStyle， pathLineSelectedStyle ， dirArrowStyle ，
+						 * keyPointStyle ， startPointStyle ， endPointStyle ， keyPointHoverStyle ，
+						 * keyPointOnSelectedPathLineStyle ， pathNavigatorStyle
+						 */
+                    return {
+                        pathLineStyle: {
+                            strokeStyle: color,
+                            lineWidth: lineWidth
+                        },
+                        pathLineSelectedStyle: {
+                            lineWidth: lineWidth + 2
+                        },
+//                      pathNavigatorStyle: {
+//                          fillStyle: color
+//                      }
+                    };
+                }
+                /*
+                 * 轨迹巡航器的默认样式
+                 * pathNavigatorStyle
+                 */
+            }
+        });
+        window.pathSimplifierIns = pathSimplifierIns;
+        //设置数据
+        pathSimplifierIns.setData(pointData);
+
+        /*
+         * 创建一个轨迹巡航器。
+         * pathIndex：关联的轨迹索引
+         * options：巡航器的配置选项，详见下方轨迹巡航器部分。
+         */
+        var navg0 = pathSimplifierIns.createPathNavigator(0, {
+                loop: true,
+                speed: 500000,
+                /*
+                 * 轨迹巡航器的默认样式，属性取值为：
+					{
+					  width: {number} 巡航器形状宽度
+					  height: {number} 巡航器形状高度
+					  initRotateDegree：{number} 初始旋转角度，默认0
+					  autoRotate: {boolean} 是否根据路径方向进行角度旋转（相对于正上方向），默认true
+					  content: {string|function} 巡航器的内容，详见下
+					  fillStyle:  {string}  填充色，比如 red, rgb(255,0,0), rgba(0,0,0,1)等 
+					  strokeStyle: {string} 描边色
+					  lineWidth: {number} 描边宽度 
+					  pathLinePassedStyle: {Object} 巡航器经过的路径的样式，属性取值见上方 pathLineStyle 
+					}
+					
+                 */
+                pathNavigatorStyle: {
+                    width: 24,
+                    height: 24,
+                    //使用图片
+                    /*
+                     * content的取值有两类：
+						1. {string}, 可以是 defaultPathNavigator（默认）, circle（圆形），none（空）
+						2. {function},  根据矩形范围（中心点为当前位置），描绘出巡航器的形状路径
+						@param {Canvas.Context} ctx  Canvas的2d Context对象
+						@param {number} x 绘制区域左上角横坐标（相对于map容器）
+						@param {number} y 绘制区域左上角纵坐标（相对于map容器）
+						@param {number} width 绘制区域的宽度
+						@param {number} height 绘制区域的高度
+                     */
+//                  content: PathSimplifier.Render.Canvas.getImageContent('./imgs/plane.png', onload, onerror),
+                    strokeStyle: null,
+                    fillStyle: null,
+                    //经过路径的样式
+                    pathLinePassedStyle: {
+                        lineWidth: 6,
+                        strokeStyle: 'yellow',
+                        /*
+                         * 轨迹线上方向箭头的默认配置（pathLine***Style中可覆盖），属性继承 pathLineStyle  。
+                         * 额外属性：
+                         * stepSpace: {number} 箭头排布的间隔，单位像素
+                         * width: {number} 箭头宽度，通常不用设置，直接取所在轨迹线的lineWidth
+                         */
+                        dirArrowStyle: {
+                            stepSpace: 15,
+                            strokeStyle: 'red'
+                        }
+                    }
+                }
+        });
+
+//      var navg1 = pathSimplifierIns.createPathNavigator(1, {
+//              loop: true,
+//              speed: 500000,
+//              pathNavigatorStyle: {
+//                  width: 24,
+//                  height: 24,
+//                  //使用图片
+//                  content: PathSimplifier.Render.Canvas.getImageContent('./imgs/plane.png', onload, onerror),
+//                  strokeStyle: null,
+//                  fillStyle: null,
+//                  //经过路径的样式
+//                  pathLinePassedStyle: {
+//                      lineWidth: 6,
+//                      strokeStyle: 'orange',
+//                      dirArrowStyle: {
+//                          stepSpace: 15,
+//                          strokeStyle: 'red'
+//                      }
+//                  }
+//              }
+//      });
+//
+//      var navg2 = pathSimplifierIns.createPathNavigator(2, {
+//              loop: true,
+//              speed: 500000,
+//              pathNavigatorStyle: {
+//                  width: 24,
+//                  height: 24,
+//                  //使用图片
+//                  content: PathSimplifier.Render.Canvas.getImageContent('./imgs/plane.png', onload, onerror),
+//                  strokeStyle: null,
+//                  fillStyle: null,
+//                  //经过路径的样式
+//                  pathLinePassedStyle: {
+//                      lineWidth: 6,
+//                      strokeStyle: 'green',
+//                      dirArrowStyle: {
+//                          stepSpace: 15,
+//                          strokeStyle: 'red'
+//                      }
+//                  }
+//              }
+//      });
+//
+//      var navg3 = pathSimplifierIns.createPathNavigator(3, {
+//              loop: true,
+//              speed: 500000,
+//              pathNavigatorStyle: {
+//                  width: 24,
+//                  height: 24,
+//                  //使用图片
+//                  content: PathSimplifier.Render.Canvas.getImageContent('./imgs/plane.png', onload, onerror),
+//                  strokeStyle: null,
+//                  fillStyle: null,
+//                  //经过路径的样式
+//                  pathLinePassedStyle: {
+//                      lineWidth: 6,
+//                      strokeStyle: 'blue',
+//                      dirArrowStyle: {
+//                          stepSpace: 15,
+//                          strokeStyle: 'red'
+//                      }
+//                  }
+//              }
+//      });
+//
+//      var navg4 = pathSimplifierIns.createPathNavigator(4, {
+//              loop: true,
+//              speed: 500000,
+//              pathNavigatorStyle: {
+//                  width: 24,
+//                  height: 24,
+//                  //使用图片
+//                  content: PathSimplifier.Render.Canvas.getImageContent('./imgs/plane.png', onload, onerror),
+//                  strokeStyle: null,
+//                  fillStyle: null,
+//                  //经过路径的样式
+//                  pathLinePassedStyle: {
+//                      lineWidth: 6,
+//                      strokeStyle: 'purple',
+//                      dirArrowStyle: {
+//                          stepSpace: 15,
+//                          strokeStyle: 'red'
+//                      }
+//                  }
+//              }
+//      });
+//
+//      var navg5 = pathSimplifierIns.createPathNavigator(5, {
+//              loop: true,
+//              speed: 500000,
+//              pathNavigatorStyle: {
+//                  width: 24,
+//                  height: 24,
+//                  //使用图片
+//                  content: PathSimplifier.Render.Canvas.getImageContent('./imgs/car.png', onload, onerror),
+//                  strokeStyle: null,
+//                  fillStyle: null,
+//                  //经过路径的样式
+//                  pathLinePassedStyle: {
+//                      lineWidth: 6,
+//                      strokeStyle: 'black',
+//                      dirArrowStyle: {
+//                          stepSpace: 15,
+//                          strokeStyle: 'red'
+//                      }
+//                  }
+//              }
+//      });
+//
+//      var navg6 = pathSimplifierIns.createPathNavigator(6, {
+//              loop: true,
+//              speed: 500000,
+//              pathNavigatorStyle: {
+//                  width: 24,
+//                  height: 24,
+//                  //使用图片
+//                  content: PathSimplifier.Render.Canvas.getImageContent('./imgs/plane.png', onload, onerror),
+//                  strokeStyle: null,
+//                  fillStyle: null,
+//                  //经过路径的样式
+//                  pathLinePassedStyle: {
+//                      lineWidth: 6,
+//                      strokeStyle: 'green',
+//                      dirArrowStyle: {
+//                          stepSpace: 15,
+//                          strokeStyle: 'red'
+//                      }
+//                  }
+//              }
+//      });
+//
+//      var navg7 = pathSimplifierIns.createPathNavigator(7, {
+//              loop: true,
+//              speed: 500000,
+//              pathNavigatorStyle: {
+//                  width: 24,
+//                  height: 24,
+//                  //使用图片
+//                  content: PathSimplifier.Render.Canvas.getImageContent('./imgs/plane.png', onload, onerror),
+//                  strokeStyle: null,
+//                  fillStyle: null,
+//                  //经过路径的样式
+//                  pathLinePassedStyle: {
+//                      lineWidth: 6,
+//                      strokeStyle: 'blue',
+//                      dirArrowStyle: {
+//                          stepSpace: 15,
+//                          strokeStyle: 'red'
+//                      }
+//                  }
+//              }
+//      });
+
+        navg0.start();
+//      navg1.start();
+//      navg2.start();
+//      navg3.start();
+//      navg4.start();
+//      navg5.start();
+//      navg6.start();
+//      navg7.start();
+       
+    });
+    
+    </script>
+</body>
+
+</html>

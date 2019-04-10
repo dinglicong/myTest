@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jq.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/js-cookie.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<script type="text/javascript">
+			$(function(){
+				console.log('a')
+				Cookies.set('st', '234', { domain: '56qq.com' });
+				Cookies.set('st', '331234', { domain: 'dev.s.56qq.com' });
+				Cookies.set('sid', '134', { domain: '56qq.com' });
+				console.log(Cookies.get('st'), Cookies.get('st', { domain: 'dev.s.56qq.com' }));
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jq.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<script type="text/javascript">
+			function test(data) {
+				try{
+					var _cpu = PC_NATIVE.getCPUID();
+					$.extend(data, _cpu);
+					
+				}catch(e){
+					//TODO handle the exception
+				}
+				console.log(data);
+			}
+			
+			
+			test({test:'123'});
+		</script>
+	</body>
+</html>

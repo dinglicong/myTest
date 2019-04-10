@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<style type="text/css">
+        body, html,#allmap {width: 100%;height: 100%;margin:0;font-family:"微软雅黑";}
+        #l-map{height:100%;width:100%;}
+    </style>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=A4749739227af1618f7b0d1b588c0e85"></script>
+</head>
+<body>
+	<div id="l-map"></div>
+
+</body>
+</html>
+<script type="text/javascript">
+// 百度地图API功能
+    var map = new BMap.Map("l-map");
+    var point = new BMap.Point(117.404, 39.915);
+    var options = {
+        size: BMAP_POINT_SIZE_NORMAL,
+        shape: BMAP_POINT_SHAPE_CIRCLE,
+        color: '#E61D1D'
+    };
+    var points = [];
+    var arr = [{lng:117.947858335734,lat:32.525279159037},
+                {lng:118.383382110241,lat:32.2550486411072},
+                {lng:117.636600014802,lat:32.3451893435995},
+                {lng:117.955616137918,lat:32.8440846812013},
+                {lng:118.29546363737,lat:32.1278194375474},
+                {lng:118.350754379667,lat:32.3152911841812},
+                {lng:118.100225471682,lat:32.7127652630793},
+                {lng:119.008715679522,lat:32.7062542826147},
+                {lng:117.275893497703,lat:32.7619615076768},
+                {lng:118.231298398938,lat:32.5032199632522},
+                {lng:117.272795091337,lat:32.7571576290566},
+                {lng:117.95552638963,lat:32.9111045673265},
+                {lng:118.336732460082,lat:32.2874067429453},
+                {lng:117.623729,lat:32.907704},
+                {lng:117.553135843082,lat:32.9121510882455},
+                {lng:117.741528,lat:32.900114},
+                {lng:118.142086053963,lat:31.976462866923},
+                {lng:118.421945405641,lat:32.4169276023649},
+                {lng:118.281274386189,lat:32.1062782027602},
+                {lng:117.9522743088,lat:32.8189034316664},
+                {lng:118.289353561535,lat:32.3535258966225},
+                {lng:118.795103585961,lat:32.6335150078309},
+                {lng:118.379956406906,lat:32.3424636171342},
+                {lng:118.439450720063,lat:32.390451216915},
+                {lng:118.797144284903,lat:32.6293899365197},
+                {lng:118.431692079187,lat:32.2107938644043},
+                {lng:118.000511970105,lat:32.2632993698245},
+                {lng:117.984448571425,lat:31.9099256573748},
+                {lng:118.622614337419,lat:32.718112142633},
+                {lng:117.699133167832,lat:32.5328379241103},
+                {lng:117.933531314231,lat:32.6897102509083},
+                {lng:117.576155051878,lat:32.8747752691817},
+                {lng:118.020155101239,lat:32.777445760884},
+                {lng:118.004121193057,lat:32.7958483366021},
+                {lng:117.583819121326,lat:32.8635222217012},
+                {lng:117.549668535428,lat:32.8699387700983},
+                {lng:118.493010174094,lat:32.3258445155626},
+                {lng:118.388369833353,lat:32.3919557196284},
+                {lng:118.309385120801,lat:32.4177650466859},
+                {lng:118.603120698234,lat:32.215844908931},
+                {lng:118.338381077231,lat:32.2862789225972},
+                {lng:117.728743515928,lat:32.5259193814915},
+                ];
+    var pointCollection;
+    
+    
+    map.centerAndZoom('滁州', 15);
+    map.enableScrollWheelZoom();
+    
+//  var marker = new BMap.Marker(new BMap.Point(116.404, 39.915));  // 创建标注
+//  map.addOverlay(marker);              // 将标注添加到地图中
+    
+//  arr.forEach(function(item) {
+//      points.push(new BMap.Point(item.lng, item.lat))
+//  });
+//  
+//  pointCollection = new BMap.PointCollection(points, options);
+//  map.addOverlay(pointCollection);
+//  pointCollection.addEventListener('click', function (e) {
+//      eventPoint(arr, map, e.point);
+//  });
+    arr.forEach(function(item, index) {
+        var imgSrc = './img/jyz.png';
+        var myIcon = new BMap.Icon(imgSrc, new BMap.Size(32, 32));
+        var pt = new BMap.Point(item.lng, item.lat);
+        var marker = new BMap.Marker(pt,{icon:myIcon});
+        map.addOverlay(marker);
+        marker.addEventListener('click', function() {
+            var self = this;
+           eventPoint(arr, map, self.point);
+        })
+    })
+</script>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			html,body{
+				margin: 0;
+				padding: 0;
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+			}
+			.js_main{
+				width: 100%;
+				height: calc(100% - 200px);
+				margin-top: 200px;
+				overflow-y: auto;
+			}
+			.normal_table{
+				/*position: absolute;*/
+			}
+			.normal_table,.normal_table td,.normal_table th{
+				border-collapse: collapse;
+				border: 1px solid #CDCDCD;
+			}
+		</style>
+		<script src="js/jq.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/drag.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div class="js_main">
+			<table class="normal_table">
+				<tr>
+					<th>Header</th>
+					<th>Header</th>
+					<th>Header</th>
+				</tr>
+				<tr class="js_order">
+					<td>Data</td>
+					<td>Data</td>
+					<td class="">
+						<button class="js_btn">123</button>
+					</td>
+				</tr>
+				<tr class="js_order">
+					<td>Data1</td>
+					<td>Data1</td>
+					<td>Data1</td>
+				</tr>
+				<tr class="js_order">
+					<td>Data2</td>
+					<td>Data2</td>
+					<td>Data2</td>
+				</tr>
+				<tr class="js_order">
+					<td>Data3</td>
+					<td>Data3</td>
+					<td>Data3</td>
+				</tr>
+				<tr class="js_order">
+					<td>Data3</td>
+					<td>Data3</td>
+					<td>Data3</td>
+				</tr><tr class="js_order">
+					<td>Data3</td>
+					<td>Data3</td>
+					<td>Data3</td>
+				</tr><tr class="js_order">
+					<td>Data3</td>
+					<td>Data3</td>
+					<td>Data3</td>
+				</tr><tr class="js_order">
+					<td>Data3</td>
+					<td>Data3</td>
+					<td>Data3</td>
+				</tr><tr class="js_order">
+					<td>Data3</td>
+					<td>Data3</td>
+					<td>Data3</td>
+				</tr><tr class="js_order">
+					<td>Data3</td>
+					<td>Data3</td>
+					<td>Data3</td>
+				</tr><tr class="js_order">
+					<td>Data3</td>
+					<td>Data3</td>
+					<td>Data3</td>
+				</tr><tr class="js_order">
+					<td>Data3</td>
+					<td>Data3</td>
+					<td>Data3</td>
+				</tr><tr class="js_order">
+					<td>Data3</td>
+					<td>Data3</td>
+					<td>Data3</td>
+				</tr><tr class="js_order">
+					<td>Data3</td>
+					<td>Data3</td>
+					<td>Data3</td>
+				</tr><tr class="js_order">
+					<td>Data3</td>
+					<td>Data3</td>
+					<td>Data3</td>
+				</tr><tr class="js_order">
+					<td>Data3</td>
+					<td>Data3</td>
+					<td>Data3</td>
+				</tr><tr class="js_order">
+					<td>Data3</td>
+					<td>Data3</td>
+					<td>Data3</td>
+				</tr>
+			</table>
+			<button class="btn1">开启</button>
+			<button class="btn2">关闭</button>
+		</div>
+		
+		<script type="text/javascript">
+			$(function(){
+				$('.js_main').off()
+				.on('click', '.btn1', function(e){
+					var $this = $(this);
+					var offset = $this.offset();
+					console.log(offset.left, offset.top);
+					console.log(e.clientX, e.clientY);
+					console.log(e.pageX, e.pageY);
+					$('.js_order').arrangeable();
+				})
+				.on('click', '.btn2', function(){
+					$('.js_order').off();
+				})
+				.on('click', '.js_btn', function() {
+					console.log('test')
+				})		
+			})
+		</script>
+	</body>
+</html>

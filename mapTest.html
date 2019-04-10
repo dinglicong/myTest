@@ -19,6 +19,7 @@
 			.clearfix{clear: both;}
 			.login-con{z-index:2000; position: absolute; top: 20px;border: 1px solid #CDCDCD;width: 220px; height: 50px;background: #FFFFFF;}
 		</style>
+		<link rel="stylesheet" type="text/css" href="css/userManger.css"/>
 		<script src="js/jq.js" type="text/javascript" charset="utf-8"></script>
 		<script src="http://api.map.baidu.com/api?v2.0&ak=EzWsBs55tp2sh3ZVwjUNlLE7" type="text/javascript" charset="utf-8"></script>
 	</head>
@@ -56,13 +57,23 @@
 			});
 			
 		
-			var map = new BMap.Map("mapCon");
+			var map = new BMap.Map("mapCon", {minZoom: 10,maxZoom: 16});//最小最大缩放级别
 			var point = new BMap.Point(116.404, 39.915);
 			map.centerAndZoom(point, 15);
+			
 			
 			map.enableScrollWheelZoom();   //启用滚轮放大缩小，默认禁用
 			map.enableContinuousZoom();    //启用地图惯性拖拽，默认禁用
 			
+//			map.setMinZoom(3);//设置最小缩放级别
+//			map.setMaxZoom(20);//设置最大缩放级别
+			
+			
+			map.addEventListener('zoomstart', function() {
+				var zoomNum = map.getZoom();
+				
+				console.log(zoomNum)
+			});
 			//创建遮罩物
 			var myIcon = new BMap.Icon("./img/car.png", new BMap.Size(32,20));
 			
@@ -81,19 +92,21 @@
 //			"<p style='margin:0;line-height:1.5;font-size:13px;text-indent:2em'>天安门坐落在中国北京市中心,故宫的南侧,与天安门广场隔长安街相望,是清朝皇城的大门...</p>" +   
 //			"</div>";
 			
-			var sContent = '<div class="text-con fl">'
-			+'	<p>川A12345&nbsp;张师傅</p>'
-			+'	<p>13512345678</p>'
-			+'	<p>200单&nbsp;4.9分</p>'
-			+'</div>'
-			+'<div class="btn-con fr">'
-			+'	<div class="btn btn-green" onclick="getDeatil(event)">空载</div>'
-			+'	<div class="btn btn-blue" onclick="getDeatil(event)">半载</div>'
-			+'	<div class="btn btn-green">满载</div>'
-			+'</div>'
-			+'<div class="btn btn-send clearfix" onclick="getDeatil(event)">'
-			+	'发送用车信息'
-			+'</div>';
+//			var sContent = '<div style="width:500px;background-color: #303845;"><div class="text-con fl">'
+//			+'	<p>川A12345&nbsp;张师傅</p>'
+//			+'	<p>13512345678</p>'
+//			+'	<p>200单&nbsp;4.9分</p>'
+//			+'</div>'
+//			+'<div class="btn-con fr">'
+//			+'	<div class="btn btn-green" onclick="getDeatil(event)">空载</div>'
+//			+'	<div class="btn btn-blue" onclick="getDeatil(event)">半载</div>'
+//			+'	<div class="btn btn-green">满载</div>'
+//			+'</div>'
+//			+'<div class="btn btn-send clearfix" onclick="getDeatil(event)">'
+//			+	'发送用车信息'
+//			+'</div></div>';
+			
+			var sContent = '<div class="map_info"> <div class="title">王大锤</div> <div class="item"> <div class="item_text fl">A套餐销量</div> <div class="item_text fr">18</div> </div> <div class="item"> <div class="item_text fl">B套餐销量</div> <div class="item_text fr">21</div> </div> <div class="item"> <div class="item_text fl">C套餐销量</div> <div class="item_text fr">54</div> </div> <div class="item"> <div class="item_text fl">D套餐销量</div> <div class="item_text fr">17</div> </div> </div>'
 			
 			var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象  
   
@@ -102,6 +115,80 @@
 				map.openInfoWindow(infoWindow,p);
 				console.log(p);
 			});
+			
+			
+			
+			
+			
+			//
+			
+			// 复杂的自定义覆盖物
+		    function ComplexCustomOverlay(point, text, mouseoverText){
+		      this._point = point;
+		      this._text = text;
+		      this._overText = mouseoverText;
+		    }
+			
+			ComplexCustomOverlay.prototype = new BMap.Overlay();
+    		ComplexCustomOverlay.prototype.initialize = function(map){
+				this._map = map;
+				console.log(map)
+			      var div = this._div = document.createElement("div");
+			      var self = this;
+			      var str = '<div class="point"> <div class="tc"> <div class="point_icon green"></div> </div> <div class="tc"> <div class="point_text"> test </div> </div> </div>';
+			      div.style.position = "absolute";
+			      $(div).append(str);
+			      console.log(this._point);
+
+				div.addEventListener("click",function(){
+					console.log(self._point);
+//					var p = div.getPosition();
+					map.openInfoWindow(infoWindow,self._point);
+//					console.log(p);
+					$('.point').removeClass('active');
+					$(this).find('.point').addClass('active')
+				});
+			
+			      map.getPanes().labelPane.appendChild(div);
+			      
+			      return div;
+		    }
+    		
+    		
+		    ComplexCustomOverlay.prototype.draw = function(){
+		      var map = this._map;
+		      console.log(map,map.pointToOverlayPixel);
+		      var pixel = map.pointToOverlayPixel(this._point);
+		      this._div.style.left = pixel.x - 20 + "px";
+		      this._div.style.top  = pixel.y - 10 + "px";
+		    }
+			    var txt = "银湖海岸城", mouseoverTxt = txt + " " + parseInt(Math.random() * 1000,10) + "套" ;
+			        
+			    var myCompOverlay = new ComplexCustomOverlay(new BMap.Point(116.407845,39.914101), "银湖海岸城",mouseoverTxt);
+			    var myCompOverlay2 = new ComplexCustomOverlay(new BMap.Point(116.400000,39.914101), "银湖海岸城",mouseoverTxt);
+			    
+			     map.addOverlay(myCompOverlay);
+			     map.addOverlay(myCompOverlay2);
+			     
+			     
+//			     var overLay = new BMap.Overlay();
+//			     var testStr = '<div class="point"> <div class="tc"> <div class="point_icon green"></div> </div> <div class="tc"> <div class="point_text"> test123 </div> </div> </div>';
+//			     var div = this._div = document.createElement("div");
+//			     div.style.position = "absolute";
+//			    	$(div).append(testStr);
+//			    	map.getPanes().labelPane.appendChild(div); 
+//			      
+//			     overLay.draw = function(point) {
+//			     	var pixel = map.pointToOverlayPixel(point);
+//			      	div.style.left = pixel.x - 20 + "px";
+//			      	div.style.top  = pixel.y - 10 + "px";
+//			     }
+//			     
+//			     overLay.draw(new BMap.Point(116.407845,39.90000));
+			     
+			console.log(map);
+			     
+			     
 			$(function(){
 				$("#mapCon").on("click",".btn",function(){
 					console.log($(this).html())

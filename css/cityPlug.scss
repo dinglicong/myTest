@@ -1,0 +1,238 @@
+@charset "utf-8";
+
+$font-size: 14px;
+$active-color: #6392ff;
+$border-color: #43506f;
+$gray: #aaa;
+
+
+%tab-btn{
+    padding: 0 22px;
+    line-height: 36px;
+    color: $active-color;
+    margin-bottom: -1px;
+    border-color: transparent;
+    text-decoration: none; 
+}
+
+.city_picker{
+    position: relative;
+    display: inline-block;
+    font-size: $font-size;
+
+    .cf{
+        zoom: 1;
+
+        &:after{
+            content: "";
+            display: table;
+            clear: both;
+            overflow: hidden;
+        }
+    }
+
+    .city_txt{
+        display: block;
+        padding-left: 5px;
+        height: 30px;
+        line-height: 30px;
+        border: 1px solid $border-color;
+        border-radius: 2px;
+        background-color: transparent;
+        color: #FFFFFF;
+
+        &.input-error{
+            border-color: #ff1e1e;
+        }
+    }
+
+    &.on{
+        *z-index: 1000;
+
+        .city_txt{
+            border-bottom-color: #0d7fe4;
+            border-radius: 2px 2px 0 0;
+        }
+
+        .c_dropdown{
+            display: block;
+            z-index: 1000;
+        }
+    }
+
+    .placeholder{
+        color: $gray;
+    }
+
+    .sep{
+        font-family: Helvetica, Arial, sans-serif;
+        color: $gray;
+        margin: 0 5px;
+    }
+
+    .c_dropdown{
+        position: absolute;
+        left: 0;
+        top: 100%;
+        width: 100%;
+        margin-bottom: 20px;
+        display: none;
+        background-color: #141e2e;
+    }
+
+    .c_dropdown_inner{
+        margin: 1px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+        border: 1px solid $border-color \9;
+        margin: 0 \9;
+    }
+
+    .c_reset{
+        position: absolute ;
+        right: 0;
+        top: 0;
+        @extend %tab-btn;
+        color: $active-color;
+        z-index: 2;
+        // text-decoration: underline;
+    }
+
+    .c_tab{
+        // height: 35px;
+        border-bottom: 1px solid $active-color;
+        background-color: transparent;
+
+        a{
+            float: left;
+            @extend %tab-btn;
+            border-right: 1px solid $active-color;
+
+            &:hover{
+                background-color: $active-color;
+                color: #FFFFFF;
+            }
+        }
+
+        .on{
+            background-color: $active-color;
+            color: #fff;
+            border-bottom-color: transparent;
+            cursor: default;
+        }
+
+        .disable{
+            color: #999 !important;
+            cursor: default;
+        }
+    }
+
+    .c_contents{
+        padding: 10px;
+        line-height: 26px;
+
+        a{
+            float: left;
+            padding: 0 12px;
+            color: $active-color;
+            text-decoration: none;
+            white-space: nowrap;
+            margin-right: 3px;
+            margin-bottom: 3px;
+            border-radius: 2px;
+
+            &:hover{
+                background-color: $active-color;
+                color: #FFFFFF;
+            }
+
+            &.selected{
+                background-color: #46A4FF;
+                color: #fff;
+            }
+
+            &.on{
+                color: #fff;
+                background-color: $active-color;
+            }
+        }
+    }
+
+    // 行内展示
+    &.inline{
+        .c_dropdown{
+            position: relative;
+            left: auto;
+            z-index: auto;
+            top: auto;
+            width: auto;
+        }
+
+        .c_dropdown_inner{
+            margin: 0;
+            box-shadow: none;
+            border: 1px solid $border-color;
+        }
+
+        .city_txt{
+            display: none;
+        }
+    }
+
+    &.no_tab{
+        .c_tab,
+        .c_reset{
+            display: none;
+        }
+
+        .c_contents{
+            padding: 0 0 10px;
+            margin-top: -1px;
+        }
+
+        .c_content{
+            padding: 10px 10px 0;
+            border-top: 1px solid $border-color;
+            // display: block !important;
+        }
+    }
+}
+
+.citypicker_wrap{
+    *position: relative;
+
+    .c_dropdown{
+        margin-bottom: 0;
+    }
+}
+
+.citypicker_input{
+    position: absolute;
+    visibility: hidden;
+}
+
+.selected-city{
+    background-color: #141e2e;
+    border: 1px solid $border-color;
+    border-top: none;
+    padding: 10px;
+    font-size: 14px;
+    line-height: 26px;
+
+    span{
+        display: inline-block;
+        background-color: #f1f8ff;
+        padding-left: 12px;
+        margin-right: 10px;
+        color: #46a4ff;
+        border-radius: 2px;
+    }
+    
+    a{
+        text-decoration: none;
+        // font-weight: bold;
+        font-size: 16px;
+        margin-left: 3px;
+        padding: 0 3px;
+        color: $active-color;
+    }
+}

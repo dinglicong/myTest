@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+		    html,body{
+		        width: 100%;
+		        height: 100%;
+		        margin: 0;
+		        padding: 0;
+		    }
+		    .mask{
+		        width: 100%;
+		        height: 100%;
+		        background: rgba(0,0,0,0.6);
+		        vertical-align: middle;
+		        text-align: center;
+		        display: table;
+		        background: #000000\9;
+		        filter: opactiy(60%)\9;
+		    }
+		    .mask:before{
+		        content: '';
+		        vertical-align: middle;
+		        display: inline-block;
+		    }
+		    .mask-con{
+		        /*position: absolute;
+		        top: 50%;
+		        width: 100%;*/
+		       display: table-cell;
+		       vertical-align: middle;
+		    }
+		    .content{
+		        /*transform: translateY(-50%);*/
+		        box-sizing: border-box;
+		        padding: 20px;
+		        background: #fff;
+		        display: inline-block;
+		    }
+		    
+		</style>
+	</head>
+	<body>
+        <div class="mask">
+            <div class="mask-con">
+            	<div class="content">
+            		<p>234234234asdfasdf</p>
+            		<p>234234234</p>
+            		<p>234234234</p>
+            	</div>
+            </div>
+        </div>
+	</body>
+</html>

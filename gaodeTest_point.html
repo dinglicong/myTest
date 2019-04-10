@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+        <style>
+        body,html,#container{
+	        width: 100%;
+	        height: 100%;
+	        margin: 0px;
+    	}
+
+        .amap-icon img,
+        .amap-marker-content img{
+            width: 25px;
+            height: 34px;
+        }
+
+        .marker {
+            position: absolute;
+            top: -20px;
+            right: -118px;
+            color: #fff;
+            padding: 4px 10px;
+            box-shadow: 1px 1px 1px rgba(10, 10, 10, .2);
+            white-space: nowrap;
+            font-size: 12px;
+            font-family: "";
+            background-color: #25A5F7;
+            border-radius: 3px;
+        }
+
+        .input-card{
+            width: 32rem;
+            z-index: 170;
+        }
+
+        .input-card .btn{
+            margin-right: .8rem;
+        }
+
+        .input-card .btn:last-child{
+            margin-right: 0;
+        }
+    </style>
+	</head>
+	<body>
+		<div id="container" tabindex="0"></div>
+	    <script src="https://webapi.amap.com/maps?v=1.4.10&key=2a0765d1a4d4a0dab87ec19b9af69bd9"></script>
+      	<script src="https://webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
+      	<script src="data/gaode5.js" type="text/javascript" charset="utf-8"></script>
+      	<script src="data/line/line1.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			  //创建地图
+    var map = new AMap.Map('container', {
+    	mapStyle: 'amap://styles/1ec4d4fbb834e5f63aba14310d7c933f',
+        zoom: 4
+    });
+
+    //just some colors
+    var colors = [
+	  '#ee4ec4',
+	  '#c7e135',
+//	  '#9054ff',
+//	  '#4c43da',
+//	  '#3d7efc',
+	  '#15a4fa',
+	  '#ffffff',
+	  '#37dab5',
+	  '#6bd24a',
+	  '#c7e135'
+    ];
+
+    AMapUI.load(['ui/misc/PathSimplifier', 'lib/$'], function(PathSimplifier, $) {
+
+        if (!PathSimplifier.supportCanvas) {
+            alert('当前环境不支持 Canvas！');
+            return;
+        }
+        mapPoint.forEach(function(currentData, index){
+        	var pointSimplifierIns = new PathSimplifier({
+	            map: map, //所属的地图实例
+				data: path1,
+	            getPath: function(item) {
+					return path1;
+	            },
+	          getHoverTitle: function(dataItem, idx) {
+	              return currentData.startCity + '  到   ' + currentData.endCity;
+	          },
+	            renderOptions: {
+	                //点的样式
+	                pointStyle: {
+	                    width: 3,
+	                    height: 3,
+	                    fillStyle: colors[index],
+	                },
+	                //鼠标hover时的title信息
+	                hoverTitleStyle: {
+	                    position: 'top'
+	                }
+	            }
+	        });
+        });
+  
+
+//          $('#loadingTip').remove();
+//      });
+
+//      pointSimplifierIns.on('pointClick pointMouseover pointMouseout', function(e, record) {
+//          //console.log(e.type, record);
+//      });
+    });
+		</script>
+	</body>
+</html>

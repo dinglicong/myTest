@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			html,body{margin: 0;padding: 0;}
+			html,body,#mapCon{width: 100%;height: 100%;}
+			.login-con{z-index:2000; position: absolute; top: 20px;border: 1px solid #CDCDCD;width: 220px; height: 50px;background: #FFFFFF;}
+		</style>
+		<script src="js/jq.js" type="text/javascript" charset="utf-8"></script>
+		<!--<script src="http://api.map.baidu.com/api?v2.0&ak=EzWsBs55tp2sh3ZVwjUNlLE7" type="text/javascript" charset="utf-8"></script>-->
+		<script src="https://api.map.baidu.com/api?v=2.0&&ak=EzWsBs55tp2sh3ZVwjUNlLE7&s=1" type="text/javascript" charset="utf-8"></script>
+		<!--<script src="http://lbsyun.baidu.com/jsdemo/data/points-sample-data.js" type="text/javascript" charset="utf-8"></script>-->
+		<script type="text/javascript" src="http://api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js"></script>
+		<script src="js/searchInRectangle.js" type="text/javascript" charset="utf-8"></script>
+		
+	</head>
+	<body>
+		<div id="mapCon">
+			
+		</div>
+		<script type="text/javascript">
+			$(function() {
+				window.showAreaSearch = function() {
+//					$('#map_con').empty();
+
+
+				var map = new BMap.Map("mapCon", {});                        // 创建Map实例
+// 				 map.centerAndZoom(new BMap.Point(105.000, 38.000), 5); 
+// 				 map.enableScrollWheelZoom(); 
+// 				 
+// 				 for(var i = 0; i < 700; i++) {
+// 				 	var point = data.data[i];
+// 				 	var pt = new BMap.Point(point[0], point[1]);
+//					var myIcon = new BMap.Icon("./images/jyz.png", new BMap.Size(48,48));
+//					var marker = new BMap.Marker(pt,{icon:myIcon});  // 创建标注
+//					map.addOverlay(marker); 
+//					marker.addEventListener('click', function() {
+//						console.log(this)
+//					})
+// 				 }
+   				
+   				map.centerAndZoom('成都', 10); 
+   				map.enableScrollWheelZoom(); 
+   				
+   				
+   				var points = [
+// 				{"lat":39.888413,"lng":116.487431,"count":1},
+// 				{"lat":39.888443,"lng":116.487327,"count":1},
+// 				{"lat":39.888261,"lng":116.504785,"count":1},
+// 				{"lat":39.888799,"lng":116.484895,"count":1},
+// 				{"lat":39.888773,"lng":116.485044,"count":1},
+// 				{"lat":39.888861,"lng":116.487231,"count":1},
+// 				{"lat":39.891829,"lng":116.502843,"count":1},
+// 				{"lat":39.888891,"lng":116.48555,"count":1},
+// 				{"lat":39.889051,"lng":116.494267,"count":1},
+// 				{"lat":39.8888,"lng":116.484905,"count":1},
+// 				{"lat":40.343711,"lng":116.778429,"count":1},
+// 				{"lat":39.715484,"lng":116.031257,"count":1},
+// 				{"lat":39.715487,"lng":116.031291,"count":1},
+// 				{"lat":39.87662,"lng":116.598078,"count":1},
+// 				{"lat":39.715496,"lng":116.031653,"count":1},
+// 				{"lat":39.715496,"lng":116.031653,"count":1},
+// 				{"lat":39.827939,"lng":116.515492,"count":1},
+// 				{"lat":39.715496,"lng":116.031653,"count":1},
+// 				{"lat":39.876141,"lng":116.598425,"count":1},
+// 				{"lat":39.808579,"lng":116.33122,"count":1},
+// 				{"lat":39.717096,"lng":116.396042,"count":1},
+// 				{"lat":39.501863,"lng":116.28943,"count":1},
+// 				{"lat":39.501863,"lng":116.28943,"count":1},
+// 				{"lat":39.724812,"lng":116.372204,"count":1},
+// 				{"lat":39.875939,"lng":116.332742,"count":1},
+// 				{"lat":39.622994,"lng":116.319574,"count":1},
+// 				{"lat":39.70445,"lng":116.454348,"count":1},
+// 				{"lat":39.704444,"lng":116.454374,"count":1},
+// 				{"lat":39.704446,"lng":116.454375,"count":1},
+// 				{"lat":39.704479,"lng":116.454455,"count":1},
+// 				{"lat":39.704411,"lng":116.454378,"count":1}
+   				
+// 				{lat:30.5411057835864,lng:104.064829113105,count:1},
+//				{lat:30.5410806914075,lng:104.064901983317,count:1},
+//				{lat:30.5410987006614,lng:104.064891002209,count:1},
+//				{lat:30.5412780747999,lng:104.065306252656,count:1},
+//				{lat:30.5410638499295,lng:104.065523877286,count:1},
+//				{lat:30.541069794189,lng:104.065563806603,count:1},
+//				{lat:30.541091627493,lng:104.064945904027,count:1},
+//				{lat:30.5411117843891,lng:104.064827116423,count:1},
+//				{lat:30.5410747537812,lng:104.064858062474,count:1},
+//				{lat:30.5404786752682,lng:104.065795426691,count:1},
+//				{lat:30.541148425892,lng:104.065819354236,count:1},
+//				{lat:30.5318386053555,lng:104.060189403183,count:1},
+//				{lat:30.531795031108,lng:104.060564649505,count:1},
+//				{lat:30.531793338986,lng:104.060368044665,count:1},
+//				{lat:30.5410806735704,lng:104.064914960028,count:1},
+//				{lat:30.541089715941,lng:104.064882018752,count:1},
+//				{lat:30.5413988385819,lng:104.064720295743,count:1},
+//				{lat:30.5410796615505,lng:104.064923943956,count:1},
+//				{lat:30.5410725870906,lng:104.064979844074,count:1},
+//				{lat:30.5410887025357,lng:104.064892000872,count:1},
+//				{lat:30.5411137273771,lng:104.064868042762,count:1},
+				
+				
+				{lat:30.541106,lng:104.064829,count:1},
+				{lat:30.541099,lng:104.064891,count:1},
+				{lat:30.541278,lng:104.065306,count:1},
+				{lat:30.541064,lng:104.065524,count:1},
+				{lat:30.54107,lng:104.065564,count:1},
+				{lat:30.541092,lng:104.064946,count:1},
+				{lat:30.541112,lng:104.064827,count:1},
+				{lat:30.541081,lng:104.064902,count:1},
+				{lat:30.541081,lng:104.064902,count:1},
+				{lat:30.541112,lng:104.064827,count:1},
+				{lat:30.541092,lng:104.064946,count:1},
+				{lat:30.54107,lng:104.065564,count:1},
+				{lat:30.541064,lng:104.065524,count:1},
+				{lat:30.541099,lng:104.064891,count:1},
+				{lat:30.541278,lng:104.065306,count:1},
+				{lat:30.541099,lng:104.064891,count:1},
+				{lat:30.541278,lng:104.065306,count:1},
+				{lat:30.541064,lng:104.065524,count:1},
+				{lat:30.54107,lng:104.065564,count:1},
+				{lat:30.541092,lng:104.064946,count:1},
+				{lat:30.541112,lng:104.064827,count:1},
+				{lat:30.541081,lng:104.064902,count:1},
+				{lat:30.531793,lng:104.060368,count:1},
+				{lat:30.531795,lng:104.060565,count:1},
+				{lat:30.531839,lng:104.060189,count:1},
+				{lat:30.541148,lng:104.065819,count:1},
+				{lat:30.540479,lng:104.065795,count:1},
+				{lat:30.541075,lng:104.064858,count:1},
+				{lat:30.541081,lng:104.064915,count:1},
+				{lat:30.54109,lng:104.064882,count:1},
+				{lat:30.541399,lng:104.06472,count:1},
+				{lat:30.54108,lng:104.064924,count:1},
+				{lat:30.541114,lng:104.064868,count:1},
+				{lat:30.541089,lng:104.064892,count:1},
+				{lat:30.541073,lng:104.06498,count:1},
+
+
+   				];
+   				
+   				
+   				var heatmapOverlay = new BMapLib.HeatmapOverlay({"radius":20});
+   				
+   				setTimeout(function(){
+   					map.addOverlay(heatmapOverlay);
+   					heatmapOverlay.setDataSet({data:points,max: 10});
+   					
+   					window.pullBox = new BMapLib.SearchInRectangle(map, {
+			            renderOptions:{
+			                map: map,
+			                strokeWeight: 2,
+			                strokeColor: "#DFD3AC",
+			                opacity: 0.3,                
+			                autoClose: false,
+			                autoViewport: false,
+			                panel: "result",
+			                selectFirstResult: false,
+			                ShowPointLocalContorlName: 'js_lng',
+			                onSearchComplete: function(e) {
+			                	console.log(this, e);
+			                },
+			                callback: function(southEastPoint, northWestPoint){
+			                	console.log(southEastPoint, northWestPoint)
+			                }
+			            }
+			        }); 
+			        pullBox.setFillColor("black");
+			        pullBox.setLineStyle("dashed");
+			        pullBox.open();
+			        $('svg').css('z-index','2')
+   					
+   				},1000)
+   				
+   				
+		      };
+		      showAreaSearch();
+			})
+		</script>
+	</body>
+</html>

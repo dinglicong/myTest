@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- 原始地址：//webapi.amap.com/ui/1.0/ui/misc/PathSimplifier/examples/index.html -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>轨迹展示&巡航</title>
+    <style>
+    html,
+    body,
+    #container {
+        width: 100%;
+        height: 100%;
+        margin: 0px;
+    }
+    
+    #loadingTip {
+        position: absolute;
+        z-index: 9999;
+        top: 0;
+        left: 0;
+        padding: 3px 10px;
+        background: red;
+        color: #fff;
+        font-size: 14px;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="container"></div>
+    <script type="text/javascript" src='//webapi.amap.com/maps?v=1.4.13&key=2a0765d1a4d4a0dab87ec19b9af69bd9'></script>
+    <script type="text/javascript" src='//webapi.amap.com/loca?v=1.2.0&key=2a0765d1a4d4a0dab87ec19b9af69bd9'></script>
+    <!-- UI组件库 1.0 -->
+    <script src="//webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
+ 	<script src="data/line/city_line.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+    	console.log(city_line);
+    //创建地图
+    var map = new AMap.Map('container', {
+    	mapStyle: 'amap://styles/1ec4d4fbb834e5f63aba14310d7c933f',
+    	features: ['bg', 'road'],
+        zoom: 4,
+    });
+//  var map = Loca.create('container', {
+//  	mapStyle: 'amap://styles/1ec4d4fbb834e5f63aba14310d7c933f',
+//  	features: ['bg', 'road'],
+//      zoom: 4,
+//      viewMode: '2D'
+//  });
+    
+    var layer = Loca.visualLayer({
+        container: map,
+        fitView: true,
+        type: 'line',
+        shape: 'line'
+    });
+
+    layer.setData(city_line, {
+        lnglat: 'line'
+    });
+
+    layer.setOptions({
+        style: {
+            // 3D Line 不支持设置线宽，线宽为 1px
+           borderWidth: 1,
+           opacity: 0.8,
+           color: '#5695F6'
+        }
+    });
+
+    layer.render();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- 原始地址：//webapi.amap.com/ui/1.0/ui/misc/PathSimplifier/examples/index.html -->
+    <base href="//webapi.amap.com/ui/1.0/ui/misc/PathSimplifier/examples/" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>轨迹展示&巡航</title>
+    <style>
+    html,
+    body,
+    #container {
+        width: 100%;
+        height: 100%;
+        margin: 0px;
+    }
+    
+    #loadingTip {
+        position: absolute;
+        z-index: 9999;
+        top: 0;
+        left: 0;
+        padding: 3px 10px;
+        background: red;
+        color: #fff;
+        font-size: 14px;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="container"></div>
+    <script type="text/javascript" src='//webapi.amap.com/maps?v=1.4.13&key=2a0765d1a4d4a0dab87ec19b9af69bd9'></script>
+    <!-- UI组件库 1.0 -->
+    <script src="//webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
+    <script type="text/javascript">
+    //创建地图
+    var map = new AMap.Map('container', {
+    	mapStyle: 'amap://styles/1ec4d4fbb834e5f63aba14310d7c933f',
+        zoom: 4
+    });
+
+    AMapUI.load(['ui/misc/PathSimplifier', 'lib/$'], function(PathSimplifier, $) {
+
+        if (!PathSimplifier.supportCanvas) {
+            alert('当前环境不支持 Canvas！');
+            return;
+        }
+
+        //just some colors
+        var colors = [
+            "#3366cc", "#dc3912", "#ff9900", "#109618", "#990099", "#0099c6", "#dd4477", "#66aa00",
+            "#b82e2e", "#316395", "#994499", "#22aa99", "#aaaa11", "#6633cc", "#e67300", "#8b0707",
+            "#651067", "#329262", "#5574a6", "#3b3eac"
+        ];
+//      var datalines = [
+//      		{
+//			        name: '大地线',
+//			        //创建一条包括500个插值点的大地线
+//			        path: PathSimplifier.getGeodesicPath([116.405289, 39.904987], [100.340417, 27.376994], 100)
+//	    		},
+//	    		{
+//			        name: '大地线',
+//			        //创建一条包括500个插值点的大地线
+//			        path: PathSimplifier.getGeodesicPath([116.405289, 39.904987], [113.392174, 31.208439], 100)
+//	    		},
+//	    		{
+//			        name: '大地线',
+//			        //创建一条包括500个插值点的大地线
+//			        path: PathSimplifier.getGeodesicPath([116.405289, 39.904987], [124.905846, 42.232876], 100)
+//	    		},
+//	    		{
+//			        name: '大地线',
+//			        //创建一条包括500个插值点的大地线
+//			        path: PathSimplifier.getGeodesicPath([116.405289, 39.904987], [108.426354, 37.827452], 100)
+//	    		},
+//	        	{
+//			        name: '大地线',
+//			        //创建一条包括500个插值点的大地线
+//			        path: PathSimplifier.getGeodesicPath([116.405289, 39.904987], [87.61792, 43.793308], 100)
+//	    		}
+//      	];
+        	var datalines = [
+        		{
+			        name: '大地线',
+			        //创建一条包括500个插值点的大地线
+			        path: [[116.405289, 39.904987], [100.340417, 27.376994]]
+	    		},
+	    		{
+			        name: '大地线',
+			        //创建一条包括500个插值点的大地线
+			        path: [[116.405289, 39.904987], [113.392174, 31.208439]]
+	    		},
+	    		{
+			        name: '大地线',
+			        //创建一条包括500个插值点的大地线
+			        path: [[116.405289, 39.904987], [124.905846, 42.232876]]
+	    		},
+	    		{
+			        name: '大地线',
+			        //创建一条包括500个插值点的大地线
+			        path: [[116.405289, 39.904987], [108.426354, 37.827452]]
+	    		},
+	        	{
+			        name: '大地线',
+			        //创建一条包括500个插值点的大地线
+			        path: [[116.405289, 39.904987], [87.61792, 43.793308]]
+	    		}
+        	];
+        var pathSimplifierIns = new PathSimplifier({
+        	data: datalines,
+            zIndex: 100,
+            //autoSetFitView:false,
+            map: map, //所属的地图实例
+
+            getPath: function(pathData, pathIndex) {
+
+                return pathData.path;
+//              return PathSimplifier.getGeodesicPath(
+//                          pathData.path[0], pathData.path[pathData.path.length - 1], 500)
+            },
+            getHoverTitle: function(pathData, pathIndex, pointIndex) {
+
+                if (pointIndex >= 0) {
+                    return pathData.name + '，点：' + pointIndex + '/' + pathData.path.length;
+                }
+
+                return pathData.name + '，点数量' + pathData.path.length;
+            },
+            renderOptions: {
+//              pathLineStyle: {
+//              },
+				startPointStyle: {
+					radius: 2,
+					fillStyle: '#C7E135',
+//					lineWidth: 3,
+//					strokeStyle: 'rgba(199,225,53, 0.5)'
+				},
+				endPointStyle: {
+					radius: 2,
+					fillStyle: '#C7E135',
+//					lineWidth: 3,
+//					strokeStyle: 'rgba(199,225,53, 0.5)'
+				},
+                pathLineStyle: {
+                	dirArrowStyle: true,
+                    strokeStyle: '#6476A1',
+                    lineWidth: 1,
+                    borderWidth: 0,
+                },
+                pathLineSelectedStyle: {
+                    lineWidth: 1,
+                    borderWidth: 0,
+                },
+                pathNavigatorStyle: {
+                    fillStyle: '#6476A1'
+                }
+//              getPathStyle: function(pathItem, zoom) {
+//
+//                  var color = colors[pathItem.pathIndex % colors.length],
+//                      lineWidth = Math.round(4 * Math.pow(1.1, zoom - 3));
+//
+//                  return {
+//                      pathLineStyle: {
+//                          strokeStyle: color,
+//                          lineWidth: lineWidth
+//                      },
+//                      pathLineSelectedStyle: {
+//                          lineWidth: lineWidth + 2
+//                      },
+//                      pathNavigatorStyle: {
+//                          fillStyle: color
+//                      }
+//                  };
+//              }
+            }
+        });
+
+        window.pathSimplifierIns = pathSimplifierIns;
+
+
+
+            //创建一个巡航器
+//          var navg0 = pathSimplifierIns.createPathNavigator(1, {
+//              loop: true, //循环播放
+//              speed: 500000
+//          });
+//
+//          navg0.start();
+			var animateList = [];
+			datalines.forEach(function(item, index) {
+				var navg1 = pathSimplifierIns.createPathNavigator(index, {
+	                loop: true,
+	                speed: 2000000,
+	                pathNavigatorStyle: {
+	                    width: 24,
+	                    height: 24,
+	                    //使用图片
+//	                  content: PathSimplifier.Render.Canvas.getImageContent('./imgs/plane.png', onload, onerror),
+	                    strokeStyle: null,
+	                    fillStyle: null,
+	                    //经过路径的样式
+	                    pathLinePassedStyle: {
+	                        dirArrowStyle: true,
+		                    strokeStyle: '#C7E135',
+		                    lineWidth: 1
+	                    }
+	                }
+	            });
+            	navg1.start();
+            	animateList.push(navg1);
+			})
+			
+//			setTimeout(function() {
+//				pathSimplifierIns.clearPathNavigators()
+//				pathSimplifierIns.setData();
+//			}, 2000)
+
+//          var navg1 = pathSimplifierIns.createPathNavigator(0, {
+//              loop: true,
+//              speed: 1000000,
+//              pathNavigatorStyle: {
+//                  width: 24,
+//                  height: 24,
+//                  //使用图片
+//                  content: PathSimplifier.Render.Canvas.getImageContent('./imgs/plane.png', onload, onerror),
+//                  strokeStyle: null,
+//                  fillStyle: null,
+//                  //经过路径的样式
+//                  pathLinePassedStyle: {
+//                      lineWidth: 6,
+//                      strokeStyle: 'black',
+//                      dirArrowStyle: {
+//                          stepSpace: 15,
+//                          strokeStyle: 'red'
+//                      }
+//                  }
+//              }
+//          });
+//
+//          navg1.start();
+//
+//          var navg2 = pathSimplifierIns.createPathNavigator(7, {
+//              loop: true,
+//              speed: 500000,
+//              pathNavigatorStyle: {
+//                  width: 16,
+//                  height: 32,
+//                  content: PathSimplifier.Render.Canvas.getImageContent('./imgs/car.png', onload, onerror),
+//                  strokeStyle: null,
+//                  fillStyle: null
+//              }
+//          });
+//
+//          navg2.start();
+//
+//          var navg3 = pathSimplifierIns.createPathNavigator(5, {
+//              loop: true,
+//              speed: 500000,
+//              pathNavigatorStyle: {
+//                  autoRotate: false, //禁止调整方向
+//                  pathLinePassedStyle: null,
+//                  width: 24,
+//                  height: 24,
+//                  content: PathSimplifier.Render.Canvas.getImageContent('./imgs/car-front.png', onload, onerror),
+//                  strokeStyle: null,
+//                  fillStyle: null
+//              }
+//          });
+//
+//          navg3.start();
+//      });
+    });
+    </script>
+</body>
+
+</html>

@@ -15,4 +15,58 @@ html, body {
   font-size: 30px;
   font-weight: bold; }
 
+.margin-left-1 {
+  margin-left: 10px; }
+
+.fn-1 {
+  font-size: 11px; }
+
+.margin-left-2 {
+  margin-left: 20px; }
+
+.fn-2 {
+  font-size: 12px; }
+
+.margin-left-3 {
+  margin-left: 30px; }
+
+.fn-3 {
+  font-size: 13px; }
+
+.margin-left-4 {
+  margin-left: 40px; }
+
+.fn-4 {
+  font-size: 14px; }
+
+.margin-left-5 {
+  margin-left: 50px; }
+
+.fn-5 {
+  font-size: 15px; }
+
+.margin-left-6 {
+  margin-left: 60px; }
+
+.fn-6 {
+  font-size: 16px; }
+
+.margin-left-7 {
+  margin-left: 70px; }
+
+.fn-7 {
+  font-size: 17px; }
+
+.margin-left-8 {
+  margin-left: 80px; }
+
+.fn-8 {
+  font-size: 18px; }
+
+.margin-left-9 {
+  margin-left: 90px; }
+
+.fn-9 {
+  font-size: 19px; }
+
 /*# sourceMappingURL=sassTest.css.map */

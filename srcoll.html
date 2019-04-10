@@ -1,0 +1,80 @@
+<html>
+
+	<head>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			.table {
+				border: 1px solid #000000;
+			}
+		</style>
+		<script type="text/javascript">
+			function add_table(){
+				var table = document.createElement("table");
+				var tbody = document.createElement("tbody");
+				var tr = document.createElement("tr");
+				var td = document.createElement("td");
+				var content = document.createTextNode("我是个表格.");
+				
+				td.appendChild(content);
+				tr.appendChild(td);
+				tbody.appendChild(tr);
+				table.appendChild(tbody);
+				document.body.appendChild(table);
+			}
+		</script>
+	</head>
+
+	<body onload="add_table();"></body>
+		<!--<script type="text/javascript">
+			//动态添加行与列
+
+			function addHtml() {
+				var tab = document.getElementById("viewTabs"); //获得表格
+				var colsNum = tab.rows.item(0).cells.length; //表格的列数
+
+				var num = document.getElementById("viewTabs").rows.length; //表格当前的行数
+
+				var rownum = num - 1;
+				tab.insertRow(rownum);
+				for(var i = 0; i < colsNum - 1; i++) {
+
+					tab.rows[rownum].insertCell(i); //插入列
+					tab.rows[rownum].cells[i].innerHTML = "dfd";
+
+				}
+				tab.rows[rownum].insertCell(i);
+				tab.rows[rownum].cells[i].innerHTML = "ddddkk";
+			}
+
+			//动态删除表格的行
+
+			function deleterow() {
+
+				var lowNum;
+				var num = document.getElementById("viewTabs").rows.length;
+				alert(num);
+				if(num == 2) {
+					lowNum = num - 1;
+				}
+				var tb = document.getElementById("viewTabs");
+				tb.deleteRow(lowNum);
+			}
+
+			//创建表格的行与列-->
+<!--</html>
+
+//删除当前行 在当前的列中写一个事件：如 
+<input type="text" id="btnCans" onclick="delRow(this)" />
+ function delRow(obj) {
+  var Row=obj.parentNode;
+  var Row=obj.parentNode;
+  //tr while(Row.tagName.toLowerCase()!="tr") { Row=Row.parentNode; } Row.parentNode.removeChild(Row);
+   //删除行 }
+</script>
+</body>-->
+
+</html>

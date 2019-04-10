@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#triangle_right {
+			    width: 0;
+			    height: 0;
+			    border-top: 70px solid transparent;
+			    border-left: 140px solid #ff5a00;
+			    border-bottom: 70px solid transparent;
+			    /*transform: skew(30deg);*/
+			}    
+			#heart {
+			    position: relative;
+			    margin: 0;
+			}
+			  
+			#heart:before,#heart:after {
+			    content: "";
+			    width: 70px;
+			    height: 115px;
+			    position: absolute;
+			    background: red;
+			    left: 70px;
+			    top: 0;
+			    /*-webkit-border-radius: 50px 50px 0 0;
+			    -moz-border-radius: 50px 50px 0 0;*/
+			    border-radius: 50px 50px 0 0;
+			    /*-webkit-transform: rotate(-45deg);
+			    -moz-transform: rotate(-45deg);
+			    -ms-transform: rotate(-45deg);
+			    -o-transform: rotate(-45deg);*/
+			    transform: rotate(-45deg);
+			    /*-webkit-transform-origin: 0 100%;
+			    -moz-transform-origin: 0 100%;
+			    -ms-transform-origin: 0 100%;
+			    -o-transform-origin: 0 100%;*/
+			    transform-origin: 0 100%;
+			}
+			  
+			#heart:after {
+			    left: 0;
+			    /*-webkit-transform: rotate(45deg);
+			    -moz-transform: rotate(45deg);
+			    -ms-transform: rotate(45deg);
+			    -o-transform: rotate(45deg);*/
+			    transform: rotate(45deg);
+			    /*-webkit-transform-origin: 100% 100%;
+			    -moz-transform-origin: 100% 100%;
+			    -ms-transform-origin: 100% 100%;
+			    -o-transform-origin: 100% 100%;*/
+			    transform-origin: 100% 100%;
+			}
+			.arrow{
+				position: relative;
+				margin: 50px 0 0 100px;
+			}
+			.arrow:before,.arrow:after{
+				content: '';
+				position: absolute;
+				/*background-color: #0099FF;*/
+				-webkit-transform-origin: 100% 100%;
+				transform-origin: 100% 100%;
+				/*width: 100px;
+				height: 50px;*/
+				width: 0;
+				height: 0;
+				display: block;
+				/*transform: rotate(30deg);*/
+				/*transform: skew(30deg);*/
+			}
+			.arrow:before{
+				/*border-top: 50px solid transparent;
+				border-left: 100px solid transparent;
+				border-right: 100px solid #0099FF;
+				border-bottom: 50px solid #0099FF;*/
+				border-top: 70px solid transparent;
+				border-left: 140px solid #7cc8fb;
+				transform: skew(30deg);
+			}
+			.arrow:after{
+				
+				/*transform: rotate(-30deg);
+				border-right: 50px solid #0099FF;
+				border-top: 100px solid #0099FF;*/
+				border-bottom: 70px solid transparent;
+    			border-left: 140px solid #0099FF;
+    			transform: skew(-30deg) translate(0, 70px);
+			}
+			.testdiv {
+                    box-sizing: border-box;
+                    width: 100px;
+                    height: 100px;
+                    padding: 10px;
+                    border: 10px #e14e4e solid;
+                    margin: 10px;
+                    background-clip: content-box;
+                    background-color: blue;
+            }
+            .item{
+            	padding: 10px;
+            	display: inline-block;
+            	border: 1px solid #0266d7;
+            	color: #bed7f5;
+            }
+            .blue_bg{
+            	background: #0266d7;
+            	color: #bed7f5;
+            }
+		</style>
+	</head>
+	<body>
+		<div id="heart">
+			
+		</div>
+		<div id="triangle_right">
+			
+		</div>
+		<div class="arrow">
+			
+		</div>
+		<div class="testdiv">
+			
+		</div>
+		<div class="" style="margin-top: 300px;">
+			<div class="item">
+				50%
+			</div>
+			<div class="item blue_bg">
+				50%
+			</div>
+		</div>
+		
+	</body>
+</html>

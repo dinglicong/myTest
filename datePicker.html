@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="http://s.56qq.com/staticBase/dist/20161223/js/lib/lib.js" type="text/javascript" charset="utf-8"></script>
+		<!--<script src="https://s.56qq.com/staticBase/src/js/common/datepicker.js" type="text/javascript" charset="utf-8"></script>-->
+	</head>
+	<body>
+		<input type="text" name="" id="start" value="" />
+		<input type="text" name="end" id="end" value="" />
+		<script type="text/javascript">
+			define('index',[], function(require, exports, module) {
+				var datepicker = require('datepicker');
+				var $start = $('#start');
+				var $end = $('#end');
+				var startOpts = {
+					autoClose: true,
+					defaultDate: "2018-06-19",
+					format: "yyyy-MM-dd",
+					minDate: "2018-06-19",
+					showClearBtn: false,
+					timepicker: false,
+				}
+				var endOpts = {
+					autoClose: true,
+					defaultDate: "2018-06-26",
+					format: "yyyy-MM-dd",
+					minDate: "2018-06-19",
+					showClearBtn: false,
+					timepicker: false,
+				}
+				exports.init = function() {
+					datepicker($start, $.extend(startOpts, {
+		                onSelect: function (date, value) {
+		                    startDate = value;
+		                    var endDtate = endDate || startDate;
+		                    var startTime = date.getTime();
+		                    var endTime = new Date(endDate)
+		                    if(startTime > endTime) {
+		                        $end.val(startDate);
+		                    }
+		                }
+		            }));
+		            datepicker($end, $.extend(endOpts, {
+		                onSelect: function (date, value) {
+		                    endDate = value;
+		                    var startDtate = startDate || endDate;
+		                    var endTime = date.getTime();
+		                    var startTime = new Date(startDtate)
+		                    if(startTime > endTime) {
+		                        $start.val(endDate);
+		                    }
+		                    console.log(date.getTime(), value);
+		                }
+		            }));
+				}
+			});
+			seajs.use('index', function(index){
+				index.init();
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>设置点标注的文本标签</title>
+    <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css"/>
+    <style>
+        html, body, #container {
+            height: 100%;
+            width: 100%;
+        }
+
+        .circle_info{
+            background: url(images/gaodeCircle/q1.png) no-repeat;
+            background-size: 100% 100%;
+            color: #FFFFFF;
+            width: 38px;
+            height: 38px;
+        }
+        .circle_point{
+        	width: 2px;
+        	height: 2px;
+        	background: #FF0000;
+        }
+        .circle_info_con{
+        	font-size: 14px;
+        	color: #FFFFFF;
+        	width: 152px;
+        	background: #000310;
+        	border-radius: 2px;
+        	padding: 10px;
+        	line-height: 18px;
+        	vertical-align: middle;
+        }
+        .circle_info_con .point{
+        	width: 8px;
+        	height: 8px;
+        	background: #3D7EFC;
+        	border-radius: 50%;
+        	display: inline-block;
+        	margin-right: 10px;
+        	vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+<div id="container"></div>
+<script type="text/javascript"
+        src="https://webapi.amap.com/maps?v=1.4.13&key=2a0765d1a4d4a0dab87ec19b9af69bd9"></script>
+        <script src="data/line/circleListTest.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    var map = new AMap.Map('container', {
+    	mapStyle: 'amap://styles/1ec4d4fbb834e5f63aba14310d7c933f',
+        resizeEnable: true,
+        zoom: 8
+    });
+    var str = '<div class="circle_info_con">' + 
+    '<div>青海</div>' +
+    '<div><span class="point"></span><span>进港货源  40.00%</span></div>' +
+    '<div><span class="point"></span><span>出港货源  60.00%</span></div>' + 
+    '</div>';
+    
+    var info = new AMap.InfoWindow({isCustom: true, closeWhenClickMap: true});
+
+    var marker = new AMap.Marker({
+    	map: map,
+//  	anchor: 'center',
+    	position: [116.49, 39.9],
+    	content: '<div class="circle_info"></div>',
+        zIndex: 200,
+        offset: new AMap.Pixel(-19, -19),
+    });
+    var m1 = new AMap.Marker({
+    	map: map,
+      	position: [116.49, 39.9],
+//		anchor: 'center',
+      
+    });
+    marker.on('mouseover', function(e) {
+    	var lng = e.lnglat.lng;
+    	var lat = e.lnglat.lat;
+    	info.open(map, [lng, lat]);
+    	info.setContent(str);
+    }).on('mouseout', function(){
+    	info.close();
+    })
+    
+    circleList.forEach(function(item){
+    	var marker = new AMap.Marker({
+	    	map: map,
+	    	position: [item.lng, item.lat],
+	    	content: '<div class="circle_info"></div>',
+	        zIndex: 200,
+	        offset: new AMap.Pixel(-19, -19),
+	    });
+    })
+    
+//  map.add(m1);
+//  map.add(marker);
+     map.setFitView()
+//  setTimeout(function() {
+//  	map.remove(marker)
+//  }, 2000)
+    
+</script>
+</body>
+</html>

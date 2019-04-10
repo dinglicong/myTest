@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+        <style>
+        body,html,#container{
+	        width: 100%;
+	        height: 100%;
+	        margin: 0px;
+    	}
+
+        .amap-icon img,
+        .amap-marker-content img{
+            width: 25px;
+            height: 34px;
+        }
+
+        .marker {
+            position: absolute;
+            top: -20px;
+            right: -118px;
+            color: #fff;
+            padding: 4px 10px;
+            box-shadow: 1px 1px 1px rgba(10, 10, 10, .2);
+            white-space: nowrap;
+            font-size: 12px;
+            font-family: "";
+            background-color: #25A5F7;
+            border-radius: 3px;
+        }
+
+        .input-card{
+            width: 32rem;
+            z-index: 170;
+        }
+
+        .input-card .btn{
+            margin-right: .8rem;
+        }
+
+        .input-card .btn:last-child{
+            margin-right: 0;
+        }
+    </style>
+	</head>
+	<body>
+		<div id="container" tabindex="0"></div>
+		<script src="//a.amap.com/jsapi_demos/static/china.js"></script>
+	    <script src="https://webapi.amap.com/maps?v=1.4.10&key=2a0765d1a4d4a0dab87ec19b9af69bd9&plugin=AMap.MarkerClusterer"></script>
+  <script>
+  	function fangdou(fn, time) {
+  		var timer = null;
+  		return function(){
+  			if(timer) {
+  				clearTimeout(timer);
+  			}
+  			timer = setTimeout(fn, time);
+  		}
+  	}
+  	
+  	function getLngLat() {
+      var mapInfo = map.getBounds();
+      var northeast = mapInfo.northeast;
+      var southwest = mapInfo.southwest;
+      console.log({
+      	lngOne: southwest.lng,
+      	latOne: southwest.lat,
+      	lngTwo: northeast.lng,
+      	latTwo: northeast.lat,
+      }, map.getZoom());
+  	}
+  	
+  	
+    //初始化地图
+    var map = new AMap.Map('container', {
+      resizeEnable: true, //是否监控地图容器尺寸变化
+      zoom: 11, //初始地图级别
+    });
+
+    //获取并展示当前城市信息
+    function logMapinfo(){
+//    console.log(map.getBounds(), map.getZoom());
+      var mapInfo = map.getBounds();
+      var northeast = mapInfo.northeast;
+      var southwest = mapInfo.southwest;
+      console.log({
+      	lngOne: southwest.lng,
+      	latOne: southwest.lat,
+      	lngTwo: northeast.lng,
+      	latTwo: northeast.lat,
+      }, map.getZoom());
+    }
+
+//  logMapinfo();
+
+    //绑定地图移动事件
+    map.on('moveend', fangdou(getLngLat, 500));
+  </script>
+	</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jq.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="js_target" class="">
+			<ul>
+				<li class="test1">1</li>
+				<li class="test2">2</li>
+				<li class="test3">3</li>
+				<li>4</li>
+				<li>5</li>
+				<li>6</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			var $dom = $('#js_target');
+			
+			
+			$dom.off('.dialog')
+				.on('click.dialog', '.test1', function() {
+					console.log('test1');
+				})
+				.on('click.dialog', '.test2', function() {
+					console.log('test2');
+				})
+		});
+	</script>
+	
+</html>

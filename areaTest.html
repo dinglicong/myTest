@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+        <link rel="stylesheet" type="text/css" href="css/theme_table.css">
+		<link rel="stylesheet" type="text/css" href="css/cityPlug.css"/>
+		<script src="https://s.56qq.com/staticBase/dist/20160326/js/lib/lib.js" type="text/javascript" charset="utf-8"></script>
+		<script src="http://dev.s.56qq.cn/staticBase/src/js/common/newSite.js" type="text/javascript" charset="utf-8"></script>
+		<script src="http://dev.s.56qq.cn/staticBase/src/js/common/site.js" type="text/javascript" charset="utf-8"></script>
+		
+		
+		<script src="http://dev.s.56qq.cn/staticBase/src/js/common/citypicker.js" type="text/javascript" charset="utf-8"></script>
+		
+	</head>
+	<body>
+		
+		<div class="side_content">
+			<input type="text" class="txt citypicker_input input_size" style="width: 400px;" name="" id="cityPikcer" value="" />
+		</div>
+		<script type="text/javascript">
+        /**
+         * TODO LIST
+         *
+         *
+         *
+         * 选中数据存在tab上  =>  存在变量中
+         */
+        
+        	
+		seajs.use(['http://dev.s.56qq.cn/staticBase/src/js/common/newSite.js', 'http://dev.s.56qq.cn/staticBase/src/js/common/site.js', 'http://dev.s.56qq.cn/staticBase/src/js/common/citypicker.js'], function(newSite, site, citypicker){
+        	
+	        var cp1 = citypicker('#cityPikcer', {
+	            id: -888,
+	            data: newSite,
+	            tabs: [
+	                {
+	                    name: '全国',
+	                    getData: function(){
+	                        return {'-888': '全国'};
+	                    },
+	                },
+	                {
+	                    name: '省份',
+	                    getData: function(id){
+	                        return this.data['0'];
+	                    }
+	                },
+	                {
+	                    name: '城市',
+	                    getData: function(id, provinceId){
+	                        return this.data['0,' + provinceId];
+	                    }
+	                },
+	                {
+	                    name: '区县',
+	                    getData: function(id, provinceId, cityId){
+	                        return this.data['0,' + provinceId + ',' + cityId];
+	                    }
+	                }
+	            ],
+	            getIds: function(id){
+	                return ['-888'].concat(('' + id).match(/\d{2}/g) || []);
+	            },
+	            getDataParam: function(i, n, arg){
+	                console.log((i > 1 ? arg[i - 1] : '') + n);
+	                return (i > 1 ? arg[i - 1] : '') + n;
+	            }
+	            
+	        });
+        	
+        })
+        
+		</script>
+	</body>
+</html>

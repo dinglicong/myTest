@@ -10,6 +10,10 @@
 		<script type="text/javascript" charset="utf-8">
 			$(document).ready(function(){
 				console.log($("#test"));
+				
+				$('#js_input').off().on('click', function() {
+					console.log('test');
+				});
 			});
 		</script>
 	</head>
@@ -20,9 +24,9 @@
 			</div>
 			<div class="input-con">
 				<div class="input-box">
-					<input type="text" name="" id="" value="" />
+					<input type="text" name="" id="js_input" value="" />
 					<!--<input placeholder="Date" class="textbox-n" type="text" onfocus="(this.type='date')"  id="date">--> 
-					<div class="search">
+					<div class="search" style="position: absolute;">
 						<span class="icon-search  search-btn">搜索</span>
 					</div>
 				</div>

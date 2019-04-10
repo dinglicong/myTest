@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<style type="text/css">
+        body, html,#allmap {width: 100%;height: 100%;margin:0;font-family:"微软雅黑";}
+        #l-map{height:500px;width:100%;}
+    </style>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=A4749739227af1618f7b0d1b588c0e85"></script>
+	<!-- 加载百度地图样式信息窗口 -->
+	<!--<script type="text/javascript" src="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
+	<link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" />-->
+	<!-- 加载城市列表 -->
+	<!--<script type="text/javascript" src="http://api.map.baidu.com/library/CityList/1.2/src/CityList_min.js"></script>-->
+	<title>矢量圆形覆盖区域</title>
+</head>
+<body>
+	<div id="l-map"></div>
+    <!--<div id="r-result">
+        <input type="button" onclick="showOver()" value="显示" />
+        <input type="button" onclick="hideOver()" value="隐藏" />
+    </div>-->
+</body>
+</html>
+<script type="text/javascript">
+// 百度地图API功能
+    var map = new BMap.Map("l-map");
+    var point = new BMap.Point(117.404, 39.915);
+    map.centerAndZoom(point, 15);
+    map.enableScrollWheelZoom();
+    
+    var marker = new BMap.Marker(new BMap.Point(116.404, 39.915));  // 创建标注
+    map.addOverlay(marker);              // 将标注添加到地图中
+    
+//  var local = new BMap.LocalSearch(map,   
+//            { renderOptions:{map: map, autoViewport: true}});      
+//      local.searchNearby("加油站",new BMap.Point(116.404, 39.915), 5000);
+    var local2 = new BMap.LocalSearch(map,   
+              { renderOptions:{map: map, autoViewport: true}});      
+        local2.searchNearby("加油站",new BMap.Point(117.404, 39.915), 5000);
+//  
+//  var polyline = new BMap.Polyline([
+//      new BMap.Point(116.399, 39.910),
+//      new BMap.Point(116.405, 39.920),
+//      new BMap.Point(116.425, 39.900)
+//  ], {strokeColor:"#fff", strokeWeight:6, strokeOpacity:0.5});
+//  map.addOverlay(polyline);          //增加折线
+    
+    var circle = new BMap.Circle(point,5000,{strokeColor: '#000',strokeOpacity: 0, fillColor: '#000', fillOpacity: 0.6});
+    map.addOverlay(circle);            //增加圆
+    hideOver();
+    
+//  function showOver(){
+        marker.show(); 
+//      polyline.show();
+        circle.show();
+//  }
+//  function hideOver(){
+//      marker.hide(); polyline.hide(); circle.hide();
+//  }
+</script>

@@ -1,0 +1,81 @@
+[
+	{
+		"featureType": "building",//建筑
+		"elementType": "all",
+		"stylers": {
+			"color": "#272e38"
+		}
+	}, {
+		"featureType": "manmade",//人造的(什么破翻译，人造建筑物)
+		"elementType": "all",
+		"stylers": {
+			"color": "#272e38"
+		}
+	}, {
+		"featureType": "green",
+		"elementType": "all",
+		"stylers": {
+			"visibility": "off"
+		}
+	}, {
+		"featureType": "water",//水
+		"elementType": "all",
+		"stylers": {
+			"color": "#232931"
+		}
+	}, {
+		"featureType": "land",//陆地
+		"elementType": "all",
+		"stylers": {
+			"color": "#303845"
+		}
+	}, {
+		"featureType": "road",
+		"elementType": "geometry",
+		"stylers": {
+			"color": "#1b2126"
+		}
+	}, {
+		"featureType": "poi",
+		"elementType": "all",
+		"stylers": {
+			"visibility": "off"
+		}
+	}, {
+		"featureType": "all",
+		"elementType": "labels.text.fill",
+		"stylers": {
+			"color": "#999999"
+		}
+	}, {
+		"featureType": "all",
+		"elementType": "labels.text.stroke",
+		"stylers": {
+			"color": "#000000",
+			"hue": "#000000",
+			"weight": "0.1",
+			"lightness": -70,
+			"saturation": 50,
+			"visibility": "on"
+		}
+	}, {
+		"featureType": "subway",
+		"elementType": "labels.icon",
+		"stylers": {
+			"visibility": "off"
+		}
+	}, {
+		"featureType": "highway",
+		"elementType": "labels.icon",
+		"stylers": {
+			"visibility": "off"
+		}
+	}, {
+		"featureType": "boundary",
+		"elementType": "all",
+		"stylers": {
+			"color": "#666666",
+			"visibility": "on"
+		}
+	}
+]

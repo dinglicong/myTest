@@ -20,16 +20,41 @@
 				padding: 5px 10px;
 				background-color: transparent;
 			}
+			select{
+				padding: 1px;
+			    height: auto;
+			    cursor: default;
+			    border: 1px solid #43506f;
+			    color: #fff;
+			    cursor: pointer;
+			    border-radius: 4px;
+			    appearance: none;
+			    -moz-appearance: none;
+			    -webkit-appearance: none;
+			    background: #030C1B;
+			    background-position: 90%;
+			}
 		</style>
 		<!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>-->
 		<link rel="stylesheet" type="text/css" href="css/daterangepicker-bs3.css"/>
 		<!--<link rel="stylesheet" type="text/css" href="css/bootstrap-tagsinput.css"/>-->
 		<script src="js/jq.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/moment.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/moment.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/daterangepicker.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			$(function(){
-				$('.date-picker').daterangepicker(null,function(start, end, label) {
+				$('.date-picker').daterangepicker({
+					locale:{
+						separator:" . ",
+						format:"YYYY-MM-DD",
+						cancelLabel: "Clear"
+					},
+					alwaysShowCalendars: true,
+					showDropdowns:true,
+					startDate:"2016-08-18",
+					endDate: "2016-08-18",
+					maxDate:"2016-08-18"
+				},function(start, end, label) {
                     console.log("test");
                 });
 			})
@@ -39,6 +64,11 @@
 		<div class="input-con">
 			<input type="text" class="date-picker" name="" id="" value="" />
 		</div>
-		
+		<select name="">
+			<option value="asdf">asdfa</option>
+			<option value="asdf">asdfa</option>
+			<option value="asdf">asdfa</option>
+			<option value="asdf">asdfa</option>
+		</select>
 	</body>
 </html>

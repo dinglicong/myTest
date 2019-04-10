@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jq.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<input type="file" name="" id="" value="" accept=".jpg,.png" />
+		<img id="imgCon" src=""/>
+		<script type="text/javascript">
+			$(function(){
+				$('input').on('change', function(e) {
+					var $this = $(this);
+					var files = $this.get(0).files;//获取input输入框的图片资源列表
+					var reader = new FileReader();
+					
+					
+					//成功读取
+					reader.onload = function() {
+						var dataURL = reader.result;
+						var imgCon = $('#imgCon');
+						
+						imgCon.prop('src', dataURL);
+					}
+					
+					console.log(files[0]);
+					reader.readAsDataURL(files[0]);//将文件读取为二进制编码
+				});
+			})
+		</script>
+	</body>
+</html>
